@@ -1,23 +1,23 @@
 
-# EX 1D User Defined Method
+# EX 2B Access Modifier
 ## DATE:
 ## AIM:
-To write a Java program to print Student details (Name,Collegename) cge_name is same to all members in the class. Use static type variable to access age.
+To demonstrate the java program using public access modifier and to check Vowel or Consonant using Switch Case.
 
 
 
 
 ## Algorithm
 
-1.Define a class Main with a static variable cge_name and a non-static variable name.
+1.Create a class VowelConsonantChecker with a method checkCharacter(char ch) to determine if a character is a vowel, consonant, or not a letter.
 
-2.Create the main() method to execute the program and accept user input using a Scanner.
+2.Convert the input character to uppercase using Character.toUpperCase(ch) to ensure case-insensitive checking.
 
-3.Create two objects (obj1 and obj2) of the Main class.
+3.Use Character.isLetter(ch) to check if the input is an alphabet character.
 
-4.Read names for both students using the Scanner and store them in obj1.name and obj2.name.
+4.Use a switch statement to check if the character is a vowel (A, E, I, O, U) and print the result; otherwise, print it's a consonant.
 
-5.Display each student's name along with the static college name using System.out.println().
+5.In the main() method, read a character from the user, create an object of the class, and call the checkCharacter() method to display the result.
 
 
 
@@ -27,29 +27,55 @@ To write a Java program to print Student details (Name,Collegename) cge_name is 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.*;
-public class Main
-{
-    static String cge_name="SEC";
-    String name;
-	public static void main(String[] args) {
-	Scanner sc=new Scanner(System.in);
-	Main obj1=new Main();
-	Main obj2=new Main();
-	obj1.name=sc.next();
-	obj2.name=sc.next();
-	System.out.println("Student name: "+obj1.name+" College Name: "+cge_name);
-	System.out.println("Student name: "+obj2.name+" College Name: "+cge_name);
-	}
+import java.util.Scanner;
+
+public class VowelConsonantChecker { 
+
+    public void checkCharacter(char ch) {
+       
+        ch = Character.toUpperCase(ch);
+
+       
+        if (Character.isLetter(ch)) {
+            switch (ch) {
+                case 'A':
+                case 'E':
+                case 'I':
+                case 'O':
+                case 'U':
+                    System.out.println(ch + " is  a Vowel");
+                    break;
+                default:
+                    System.out.println(ch + " is a Consonant");
+            }
+        } else {
+            System.out.println("Input is not an alphabet");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+      
+        char input = scanner.next().charAt(0);
+
+       
+        VowelConsonantChecker checker = new VowelConsonantChecker();
+        checker.checkCharacter(input);
+
+        scanner.close();
+    }
 }
+
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/485da226-4eac-496f-b418-b44fb50cd602)
+![image](https://github.com/user-attachments/assets/3426d9e4-2a33-4c58-8d7c-25e797dad2bc)
 
 
 ## Result:
-The program successfully demonstrates the use of static and non-static variables in Java. It takes two student names as input, stores them in separate objects, and displays each name along with the shared static college name.
+The program successfully determines whether the given character is a vowel, consonant, or not an alphabet. It handles both uppercase and lowercase input correctly using built-in character-handling methods.
+
 
 

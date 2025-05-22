@@ -1,18 +1,9 @@
 
-# EX 6C Hierarchical Inheritance & Multiple Inheritance
+# EX 7A POLYMORPHISM & EXCEPTION HANDLING
 ## DATE:
 ## AIM:
-To write a Java Program for below Scenario.
+To write a java program to perform sum of two numbers and three numbers using Method Overloading(Compile time polymorphism)
 
-Hierarchical Inheritance Example in Python
-
-1. Media Class have constructor to display "Parent Class is Media"
-
-2. Magazine Class constructor call its parent constructor and display "Magazine is the one of the Child of Media Class"
-
-3. Channel Class constructor call its parent constructor and display "Channel is the one of the Child of Media Class"
-
-4. In Main class create object for Child class and access its corresponding Constructor
 
 
 
@@ -25,15 +16,15 @@ Hierarchical Inheritance Example in Python
 
 ## Algorithm
 
-1.Create a parent class Media with a constructor that prints a message.
+1.Create a class raj with two sum() methods: one taking two integers, another taking three integers.
 
-2.Create a subclass Magazine that calls the parent constructor using super() and prints its own message.
+2.The first sum() method returns the sum of two numbers, and the second one returns the sum of three numbers.
 
-3.Create another subclass Channel that also calls the parent constructor and prints its own message.
+3.In the main() method, use Scanner to take three integer inputs from the user.
 
-4.In the main() method, create objects of Magazine and Channel classes.
+4.Create an object of the raj class to call both sum() methods.
 
-5.Observe constructor calls showing how parent and child constructors are invoked in inheritance.
+5.Display the results of both method calls to show method overloading in action.
 
 
 
@@ -43,48 +34,47 @@ Hierarchical Inheritance Example in Python
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class Media {
-    Media() {
-        System.out.println("Parent Class is Media");
-    }
-}
 
-class Magazine extends Media {
-    Magazine() {
-        super();
-        System.out.println("Magazine is the one of the Child of Media Class");
-    }
-}
-
-class Channel extends Media {
-    Channel() {
-        super();
-        System.out.println("Channel is the one of the Child of Media Class");
-    }
-}
-
-public class prog {
-    public static void main(String[] args) {
-        Magazine mag = new Magazine();
-
-        Channel ch = new Channel();
-    }
+import java.util.*;
+class Calculation{
+  
+ void sum(int a,int b)
+  {
+     System.out.println(a+b);
+  }
+  void sum(int a,int b,int c){
+     System.out.println(a+b+c);
+   }
+  
 }
 
 
+public class HelloWorld{
 
-
+     public static void main(String []args)
+     {
+       
+  Calculation obj=new Calculation();
+  Scanner sc=new Scanner(System.in);
+  int a=sc.nextInt();
+  int b=sc.nextInt();
+  int c=sc.nextInt();
+  obj.sum(a,b);
+  obj.sum(a,b,c);
+}
+}
 
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/fcf41418-4ab8-4248-9686-e0780af9e9db)
+![image](https://github.com/user-attachments/assets/edee8242-94bc-4d63-ade4-766d1fe90672)
 
 
 ## Result:
-The program demonstrates constructor chaining in inheritance. When a child class object is created, the parent class constructor is called first, followed by the child class constructor. This happens for both Magazine and Channel objects.
+The program successfully demonstrates method overloading by defining multiple sum() methods with different parameter lists. The appropriate method is invoked based on the number of arguments passed.
+
 
 
 

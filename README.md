@@ -1,23 +1,25 @@
 
-# EX 2B Access Modifier
+# EX 2C Array
 ## DATE:
 ## AIM:
-To demonstrate the java program using public access modifier and to check Vowel or Consonant using Switch Case.
+ To write a Java program that creates integer array of  size is 'n' elements, accepts values of arrays and find sum of all odd numbers in an array.
 
 
 
 
 ## Algorithm
 
-1.Create a class VowelConsonantChecker with a method checkCharacter(char ch) to determine if a character is a vowel, consonant, or not a letter.
+1.Start the program with the class ss and define the main() method.
 
-2.Convert the input character to uppercase using Character.toUpperCase(ch) to ensure case-insensitive checking.
+2.Use a Scanner object to take the array size and array elements as input from the user.
 
-3.Use Character.isLetter(ch) to check if the input is an alphabet character.
+3.Store the elements in an integer array using a for loop.
 
-4.Use a switch statement to check if the character is a vowel (A, E, I, O, U) and print the result; otherwise, print it's a consonant.
+4.Check each element for oddness using the condition Arr[j] % 2 != 0, and add the odd values to sumOdd.
 
-5.In the main() method, read a character from the user, create an object of the class, and call the checkCharacter() method to display the result.
+5.Display the sum of all odd numbers using System.out.println().
+
+
 
 
 
@@ -27,55 +29,35 @@ To demonstrate the java program using public access modifier and to check Vowel 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.Scanner;
-
-public class VowelConsonantChecker { 
-
-    public void checkCharacter(char ch) {
-       
-        ch = Character.toUpperCase(ch);
-
-       
-        if (Character.isLetter(ch)) {
-            switch (ch) {
-                case 'A':
-                case 'E':
-                case 'I':
-                case 'O':
-                case 'U':
-                    System.out.println(ch + " is  a Vowel");
-                    break;
-                default:
-                    System.out.println(ch + " is a Consonant");
-            }
-        } else {
-            System.out.println("Input is not an alphabet");
+import java.util.*; 
+public class ss
+{
+    public static void main(String[] args) 
+    { 
+        Scanner sc = new Scanner(System.in); 
+        int size=sc.nextInt();
+        int sumOdd=0;
+        int Arr[] = new int[size]; 
+        for(int i = 0; i < Arr.length; i++) 
+           Arr[i] = sc.nextInt(); 
+        for(int j = 0; j < Arr.length; j++){ 
+           if(Arr[j]%2!=0){ 
+             sumOdd = sumOdd + Arr[j];
+           }
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-      
-        char input = scanner.next().charAt(0);
-
-       
-        VowelConsonantChecker checker = new VowelConsonantChecker();
-        checker.checkCharacter(input);
-
-        scanner.close();
-    }
+        System.out.println("Sum of odd numbers: "+sumOdd); 
+   } 
 }
-
-
+    
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/3426d9e4-2a33-4c58-8d7c-25e797dad2bc)
+![image](https://github.com/user-attachments/assets/b12e5857-4ca9-4d43-a619-240490c5976c)
 
 
 ## Result:
-The program successfully determines whether the given character is a vowel, consonant, or not an alphabet. It handles both uppercase and lowercase input correctly using built-in character-handling methods.
+The program successfully accepts an array of integers from the user and calculates the sum of all odd numbers in the array. It then displays the correct result on the screen.
+
 
 
 

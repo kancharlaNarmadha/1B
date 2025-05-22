@@ -1,9 +1,18 @@
 
-# EX 5D IS-A relationship and HAS-A relationship
+# EX 6A Inner Class
 ## DATE:
 ## AIM:
-To write a java program to print the addition of two numbers, read two values use class and objects.Apply the has-a relationship concepts.
+to write a Java Program using Method Local Inner Class for below Scenario.
 
+Create a class "Department" with
+
+1. String value "Financial and Management Department"
+
+2. Create display() have String "ABC Industries" and inner class as "Inner"
+
+3. Inner class  print() to display department
+
+In main() access all function using its corresponding Object.
 
 Note:
 
@@ -24,15 +33,15 @@ read the input value in string format.
 
 ## Algorithm
 
-1.Create a class add with a method sum(int a, int b) that returns the sum of two integers.
+1.Create a class prog with an instance variable dept and a method display().
 
-2.In the Main class, declare variables for input and result (a, b, s).
+2.Inside the display() method, declare a local variable company.
 
-3.Use Scanner to take two integer inputs from the user.
+3.Define a local inner class Inner inside the display() method.
 
-4.Create an object of the add class and call the sum() method with the inputs.
+4.In the Inner class, define a method print() that prints both dept and company.
 
-5.Print the result of the addition returned by the sum() method.
+5.In main(), create an object of prog and call the display() method.1.
 
 
 
@@ -43,33 +52,40 @@ read the input value in string format.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.Scanner;
-class add{
-   int sum(int a, int b) {
-        return (a + b);
-    } 
-}
-public class Main {
-    public static void main(String args[]) {
-        int a, b, s;
-        Scanner sc = new Scanner(System.in);
-        a = sc.nextInt();
-        b = sc.nextInt();
-        add dd = new add();
-        s = dd.sum(a, b);
-        System.out.println("Sum is:" + s);
+class prog {
+    String dept = "Financial and Management Department";
+
+    void display() {
+        String company = "ABC Industries";
+
+        class Inner {
+            void print() {
+                System.out.println("Department is " + dept);
+                System.out.println("Company is " + company);
+            }
+        }
+
+        Inner obj = new Inner();
+        obj.print();
+    }
+
+    public static void main(String[] args) {
+        prog d = new prog();
+        d.display();
     }
 }
+
 
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/f0977395-0e95-47c1-81a9-f92558af1382)
+![image](https://github.com/user-attachments/assets/3d63bd02-8c51-44e2-85d0-c0fa83f75410)
 
 
 ## Result:
-The program successfully reads two integers from the user, calculates their sum using a separate method in another class, and displays the result.
+The program successfully demonstrates the concept of a local inner class, where the inner class accesses both the outer class member and the local variable from the method in which it's defined.
+
 
 

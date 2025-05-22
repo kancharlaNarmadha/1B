@@ -1,12 +1,10 @@
 
-# EX 4C Constructor Chaining
+# EX 4D Final ,Static Keyword
 ## DATE:
 ## AIM:
-To create a class named 'Animal' which includes its constructor. [constructor will print " I am an Animal"]
+To write a Java program for below situation, Student object contains member 'Stu_Id'. It contains object named course, which contains its own informations such as Degree, Branch, Year of Studying.
 
-Create a child class of 'Animal' named 'Dog' and add a its constructor [constructor will call its super-class constructor and print " I am a Dog"] 
 
-Create a instance of Dog class and invoke the constructor using object.
 
 
 
@@ -20,15 +18,15 @@ Create a instance of Dog class and invoke the constructor using object.
 
 ## Algorithm
 
-1.Create a class Animal with a constructor that prints "I am an animal".
+1.Create a class Course with variables degree, branch, and year, and a method dispCourse() to display course details.
 
-2.Create a subclass Dog that extends Animal and has a constructor which calls super() and prints "I am a dog".
+2.Create a class Student with a variable Stu_Id and a Course object as a data member.
 
-3.Use super() in the Dog constructor to invoke the parent class (Animal) constructor.
+3.Define the method disp() in Student to initialize student ID and call dispCourse() using the Course object.
 
-4.In the main() method, create an object of the Dog class.
+4.In the main() method, create a Student object and call disp() with student and course details.
 
-5.Observe the output showing the sequence of constructor calls from parent to child.
+5.Display the student ID and course details using the respective methods.
 
 
 
@@ -42,36 +40,47 @@ Create a instance of Dog class and invoke the constructor using object.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class Animal {
-    Animal() {
-        System.out.println("I am an animal");
+class Course {
+    String degree;
+    String branch;
+    String year;
+
+    void dispCourse(String deg, String br, String yr) {
+        degree = deg;
+        branch = br;
+        year = yr;
+        System.out.println(degree + " " + branch + " " + yr);
     }
 }
 
-class Dog extends Animal {
-    Dog() {
-        super();
-        System.out.println("I am a dog");
+class Student {
+    int Stu_Id;
+    Course course = new Course();
+
+    void disp(int id, String deg, String br, String yr) {
+        Stu_Id = id;
+        System.out.println(Stu_Id);
+        course.dispCourse(deg, br, yr);
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Dog d = new Dog(); 
+        Student s1 = new Student();
+        s1.disp(101, "B.Tech", "IT", "Third year");
     }
 }
-
-
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/1728d42f-84f0-48ff-82f0-51ed0c475fea)
+![image](https://github.com/user-attachments/assets/fcc49d46-fd09-47d7-989d-2e31748a8c1f)
 
 
 ## Result:
-The program successfully demonstrates constructor chaining using inheritance. When a Dog object is created, the Animal constructor executes first, followed by the Dog constructor.
+The program successfully demonstrates composition in Java, where a Student object contains a Course object, and both student ID and course details are displayed properly.
+
 
 
 

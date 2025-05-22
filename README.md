@@ -1,8 +1,9 @@
 
-# EX 2D Array as Argument
+# EX 3B String Buffer in java
 ## DATE:
 ## AIM:
-To write a java program to display elements of one dimensional array and passing 2d array value to function or methods. 
+To write a java program to use delete() method of the StringBuffer class deletes the String from the specified beginIndex to endIndex.
+
 
 
 
@@ -10,15 +11,15 @@ To write a java program to display elements of one dimensional array and passing
 
 ## Algorithm
 
-1.Create a class TwoDArray with a method show(int[][] x) that accepts a 2D array as a parameter.
+1.Create a class StringBufferExample4 and define the main() method to run the program.
 
-2.Inside the show() method, use nested for loops to iterate through the 2D array and print its elements in matrix form.
+2.Use a Scanner object to take input from the user: a string, followed by two integers representing start and end indices.
 
-3.In the main() method of the PassingTwoDArrayToMethod class, declare and initialize a 2D array x.
+3.Create a StringBuffer object initialized with the input string.
 
-4.Create an object of the TwoDArray class to call the show() method.
+4.Call the delete(startIndex, endIndex) method on the StringBuffer object to remove characters from startIndex to endIndex - 1.
 
-5.Call the show() method and pass the 2D array x to display its contents.
+5.Print the modified string using System.out.println().
 
 
 
@@ -32,37 +33,38 @@ To write a java program to display elements of one dimensional array and passing
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class TwoDArray 
-{
- void show(int x[ ][ ])
- {
-    int i, j;
-    System.out.println("Matrix x: ");
-   for(i = 0; i < x.length; i++)
-   {
-	 for(j = 0; j < x.length; j++)
-	   System.out.print(x[i][j]+ " ");
-	   System.out.println();
-   }
-  }
+import java.util.Scanner;
+
+public class StringBufferExample4 {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        
+        String str1 = sc.nextLine();
+        
+        int startIndex = sc.nextInt();
+        
+        int endIndex = sc.nextInt();
+        
+        StringBuffer sb = new StringBuffer(str1);
+        
+        sb.delete(startIndex, endIndex);
+         
+        System.out.println(sb);
+        
+        sc.close();
+    }
 }
-public class PassingTwoDArrayToMethod {
-public static void main(String[] args) 
-{
- int x[ ][ ] = {{1, 2},{3, 4}};
- TwoDArray obj = new TwoDArray();
-  obj.show(x);
- }
-}
+
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/ef61b891-f505-4ab4-be0c-0ba75117f387)
+![image](https://github.com/user-attachments/assets/4cbc487d-5e60-4c7f-81b6-1dc138549071)
 
 
 ## Result:
-The program successfully demonstrates how to pass a two-dimensional array to a method in Java. It prints the elements of the matrix in a structured format.
+The program successfully removes the specified substring from the input string using the StringBuffer.delete() method and displays the updated string.
+
 
 
 

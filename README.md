@@ -1,8 +1,10 @@
 
-# EX 4D Final ,Static Keyword
+# EX 5B  Tightly encapsulated class
 ## DATE:
 ## AIM:
-To write a Java program for below situation, Student object contains member 'Stu_Id'. It contains object named course, which contains its own informations such as Degree, Branch, Year of Studying.
+To create a java program to display the reverse string and  use tightly encapsulated class. 
+
+
 
 
 
@@ -18,17 +20,15 @@ To write a Java program for below situation, Student object contains member 'Stu
 
 ## Algorithm
 
-1.Create a class Course with variables degree, branch, and year, and a method dispCourse() to display course details.
+1.Create a class SetAndGet with a private string variable s.
 
-2.Create a class Student with a variable Stu_Id and a Course object as a data member.
+2.Define a method setrevstr(String s) to assign the input string to the variable s.
 
-3.Define the method disp() in Student to initialize student ID and call dispCourse() using the Course object.
+3.Define a method getrevstr() to reverse and print the string using a loop.
 
-4.In the main() method, create a Student object and call disp() with student and course details.
+4.In the main() method, create an object of SetAndGet and read a string input using Scanner.
 
-5.Display the student ID and course details using the respective methods.
-
-
+5.Call setrevstr() to store the string, and then call getrevstr() to display the reversed string.
 
 
 
@@ -40,47 +40,40 @@ To write a Java program for below situation, Student object contains member 'Stu
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class Course {
-    String degree;
-    String branch;
-    String year;
+import java.util.*;
+public class SetAndGet {
+private String s;
 
-    void dispCourse(String deg, String br, String yr) {
-        degree = deg;
-        branch = br;
-        year = yr;
-        System.out.println(degree + " " + branch + " " + yr);
-    }
+public void getrevstr() {
+    
+    for(int j=s.length();j>0;--j)
+	{
+	System.out.print(s.charAt(j-1)); 
+	}
+}
+public void setrevstr(String s) {
+ this.s =s;
 }
 
-class Student {
-    int Stu_Id;
-    Course course = new Course();
-
-    void disp(int id, String deg, String br, String yr) {
-        Stu_Id = id;
-        System.out.println(Stu_Id);
-        course.dispCourse(deg, br, yr);
-    }
+public static void main(String args[]){
+ Scanner sc=new Scanner(System.in);
+ SetAndGet obj = new SetAndGet();
+ String str=sc.nextLine();
+ 
+ obj.setrevstr(str);
+ 
+ obj.getrevstr();
 }
+}  
 
-public class Main {
-    public static void main(String[] args) {
-        Student s1 = new Student();
-        s1.disp(101, "B.Tech", "IT", "Third year");
-    }
-}
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/fcc49d46-fd09-47d7-989d-2e31748a8c1f)
+![image](https://github.com/user-attachments/assets/a3c90560-6c5b-421d-930c-42a4f380ffd2)
 
 
 ## Result:
-The program successfully demonstrates composition in Java, where a Student object contains a Course object, and both student ID and course details are displayed properly.
-
-
-
-
+The program successfully demonstrates the use of getters and setters to reverse a string.
+It takes a string as input, stores it using a setter, and prints its reverse using a getter-like method.

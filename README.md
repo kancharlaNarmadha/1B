@@ -1,9 +1,12 @@
 
-# EX 8A IO-FILE- STREAMS
+# EX 8B IO & FILE -READER/WRITER
 ## DATE:
 ## AIM:
-To implement a Java Program to read a byte in a file "testout.txt" using FileInputStream
+To write a Java Program to read the content from the String using Reader
 
+Note: Get the Input String from the User and Display the Content of the String using predefined function
+
+ Initialize char[] array = new char[39];
 
 
 
@@ -17,15 +20,17 @@ To implement a Java Program to read a byte in a file "testout.txt" using FileInp
 ## Algorithm
 
 
-1.Import java.io.* package to work with file input streams.
+1.Import necessary classes from java.io.* and java.util.*.
 
-2.Use FileInputStream to open a file named "testout.txt" for reading.
+2.Accept a string input from the user using Scanner.
 
-3.Read a character from the file using input.read() and store it in an integer variable.
+3.Create a char[] array to store characters read from the input string.
 
-4.Print the character read by converting the integer to a character using (char)i.
+4.Create a StringReader object and use the read() method to read characters into the array.
 
-5.Close the stream using input.close() inside a try-catch block to handle exceptions.
+5.Print the content of the array and close the StringReader inside a try-catch block.
+
+
 
 
 
@@ -35,23 +40,28 @@ To implement a Java Program to read a byte in a file "testout.txt" using FileInp
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-  try
-             {
-                FileInputStream input=new FileInputStream("testout.txt");
-                
-                int i=input.read();
-            
-                
-                    System.out.println((char)i);
-                    input.read();
-                
-                input.close();
-                
-
-               
-  
-                }
-                catch(Exception e){System.out.println(e);}
+    import java.io.*;  
+    import java.util.*;
+    public class JavaCharArrayReaderReadExample4 {  
+       public static void main(String[] args) {  
+    Scanner sc=new Scanner(System.in);
+    String data=sc.nextLine();
+   
+    char[] array = new char[39];
+    try {
+      // Create a StringReader
+      StringReader input = new StringReader(data);
+      //Use the read method
+      input.read(array);
+      System.out.println("Data read from the string:");
+      System.out.println(array);
+      input.close();
+    }
+    catch(Exception e) {
+      e.getStackTrace();
+    }
+       }  
+    }  
                
 
 
@@ -59,11 +69,12 @@ Register Number: 212222110016
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/1c7dc877-9059-482b-9a2d-657b19893e01)
+![image](https://github.com/user-attachments/assets/075296ab-a414-4845-aa21-56eb69cf1720)
 
 
 ## Result:
-Thus the program to implement a Java Program to read a byte in a file "testout.txt" using FileInputStream has been successfully executed
+Thus, the program to implement a Java Program to read a byte in a file "testout.txt" using FileInputStream has been successfully executed.
+
 
 
 

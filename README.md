@@ -1,22 +1,24 @@
 
-# EX 1B Variables and Operator
+# EX 1C Control Statements
 ## DATE:
 ## AIM:
-To write a program to multiply 80 to the number then divide it by 5  and subtract 15 . Display the final result.
+To write  a Java program to solve the following equation ,  y = x3 - 2 (x-3)3 + 20
 
-[Class name is ‘Demo’, num=500]
+
 
 ## Algorithm
 
-1.Start the program with a class named Demo and define the main() method as the entry point.
+1.Start the program with the main class and define the main() method.
 
-2.Declare and initialize an integer variable a with the value 500.
+2.Create a Scanner object to take integer input from the user.
 
-3.Perform an arithmetic expression ((a * 80) / 5) - 15 and store the result in an integer variable b.
+3.Read an integer x from the user using sc.nextInt().
 
-4.Use System.out.println() to display the value of b.
+4.Evaluate the expression x³ - 2(x - 3)³ + 20 using Math.pow() and store the result in variable y.
 
-5.Compile and run the program to observe the output of the arithmetic expression.
+5.Print the result using System.out.println() to display the calculated value of y.
+
+
 
 
 ## Program:
@@ -24,21 +26,21 @@ To write a program to multiply 80 to the number then divide it by 5  and subtrac
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-public class Demo
-{
-    public static void main(String[] args)
-    {
-        int a = 500;
-        int b = ((a*80)/5)-15;
-        
-        System.out.println(b);
+import java.util.Scanner;
+public class main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int x=sc.nextInt();
+        int y = (int)(Math.pow(x, 3) - 2 * Math.pow(x - 3, 3) + 20);
+        System.out.println("value: "+y);
     }
 }
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/e12ed844-5f51-45b4-98da-432105ac8253)
+![image](https://github.com/user-attachments/assets/af2d7ba2-75a1-4c7a-ba76-a4071226772c)
 
 
 ## Result:
-The program successfully performs arithmetic operations using integer variables in Java. It calculates the expression ((a * 80) / 5) - 15 and displays the correct result on the screen.
+The program successfully accepts an integer input from the user and evaluates the expression x³ - 2(x - 3)³ + 20. It then displays the correct result on the screen.
+

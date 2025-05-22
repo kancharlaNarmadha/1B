@@ -1,23 +1,26 @@
 
-# EX 2C Array
+# EX 2D Array as Argument
 ## DATE:
 ## AIM:
- To write a Java program that creates integer array of  size is 'n' elements, accepts values of arrays and find sum of all odd numbers in an array.
+To write a java program to display elements of one dimensional array and passing 2d array value to function or methods. 
+
 
 
 
 
 ## Algorithm
 
-1.Start the program with the class ss and define the main() method.
+1.Create a class TwoDArray with a method show(int[][] x) that accepts a 2D array as a parameter.
 
-2.Use a Scanner object to take the array size and array elements as input from the user.
+2.Inside the show() method, use nested for loops to iterate through the 2D array and print its elements in matrix form.
 
-3.Store the elements in an integer array using a for loop.
+3.In the main() method of the PassingTwoDArrayToMethod class, declare and initialize a 2D array x.
 
-4.Check each element for oddness using the condition Arr[j] % 2 != 0, and add the odd values to sumOdd.
+4.Create an object of the TwoDArray class to call the show() method.
 
-5.Display the sum of all odd numbers using System.out.println().
+5.Call the show() method and pass the 2D array x to display its contents.
+
+
 
 
 
@@ -29,34 +32,38 @@
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.*; 
-public class ss
+class TwoDArray 
 {
-    public static void main(String[] args) 
-    { 
-        Scanner sc = new Scanner(System.in); 
-        int size=sc.nextInt();
-        int sumOdd=0;
-        int Arr[] = new int[size]; 
-        for(int i = 0; i < Arr.length; i++) 
-           Arr[i] = sc.nextInt(); 
-        for(int j = 0; j < Arr.length; j++){ 
-           if(Arr[j]%2!=0){ 
-             sumOdd = sumOdd + Arr[j];
-           }
-        }
-        System.out.println("Sum of odd numbers: "+sumOdd); 
-   } 
+ void show(int x[ ][ ])
+ {
+    int i, j;
+    System.out.println("Matrix x: ");
+   for(i = 0; i < x.length; i++)
+   {
+	 for(j = 0; j < x.length; j++)
+	   System.out.print(x[i][j]+ " ");
+	   System.out.println();
+   }
+  }
+}
+public class PassingTwoDArrayToMethod {
+public static void main(String[] args) 
+{
+ int x[ ][ ] = {{1, 2},{3, 4}};
+ TwoDArray obj = new TwoDArray();
+  obj.show(x);
+ }
 }
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/b12e5857-4ca9-4d43-a619-240490c5976c)
+![image](https://github.com/user-attachments/assets/ef61b891-f505-4ab4-be0c-0ba75117f387)
 
 
 ## Result:
-The program successfully accepts an array of integers from the user and calculates the sum of all odd numbers in the array. It then displays the correct result on the screen.
+The program successfully demonstrates how to pass a two-dimensional array to a method in Java. It prints the elements of the matrix in a structured format.
+
 
 
 

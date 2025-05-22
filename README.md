@@ -1,8 +1,13 @@
 
-# EX 4B Introduction to Inheritance
+# EX 4C Constructor Chaining
 ## DATE:
 ## AIM:
-To write a Java program for below situation, Employee object contains member 'Emp_Id'. It contains object named name, which contains its own informations such as Fname, Mname, Lname.
+To create a class named 'Animal' which includes its constructor. [constructor will print " I am an Animal"]
+
+Create a child class of 'Animal' named 'Dog' and add a its constructor [constructor will call its super-class constructor and print " I am a Dog"] 
+
+Create a instance of Dog class and invoke the constructor using object.
+
 
 
 
@@ -15,15 +20,15 @@ To write a Java program for below situation, Employee object contains member 'Em
 
 ## Algorithm
 
-1.Create a class Name with three string variables: Fname, Mname, and Lname, and a method dispName() to display the full name.
+1.Create a class Animal with a constructor that prints "I am an animal".
 
-2.Create a class Employee with an integer variable Emp_Id and an object of class Name.
+2.Create a subclass Dog that extends Animal and has a constructor which calls super() and prints "I am a dog".
 
-3.Define the method dispName(int id) in the Employee class to assign and display the employee ID.
+3.Use super() in the Dog constructor to invoke the parent class (Animal) constructor.
 
-4.In the main() method, create an object of the Employee class.
+4.In the main() method, create an object of the Dog class.
 
-5.Call the methods to display the employee ID and the full name by accessing the Name object inside the Employee object.
+5.Observe the output showing the sequence of constructor calls from parent to child.
 
 
 
@@ -37,48 +42,36 @@ To write a Java program for below situation, Employee object contains member 'Em
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class Name {
-    String Fname;
-    String Mname;
-    String Lname;
-
-    void dispName(String fn, String mn, String ln) {
-        Fname = fn;
-        Mname = mn;
-        Lname = ln;
-        System.out.println( Fname + " " + Mname + " " + Lname);
+class Animal {
+    Animal() {
+        System.out.println("I am an animal");
     }
 }
 
-class Employee {
-    int Emp_Id;
-    Name obj = new Name();
-
-    void dispName(int id) {
-        Emp_Id = id;
-        System.out.println(Emp_Id);
+class Dog extends Animal {
+    Dog() {
+        super();
+        System.out.println("I am a dog");
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Employee emp = new Employee();
-    
-        emp.dispName(101);
-       
-        emp.obj.dispName("B", "Leo", "John");
+        Dog d = new Dog(); 
     }
 }
+
 
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/751700fb-a49e-4bd6-9d41-cbb76ffb6dd0)
+![image](https://github.com/user-attachments/assets/1728d42f-84f0-48ff-82f0-51ed0c475fea)
 
 
 ## Result:
-The program successfully demonstrates composition in Java by using an object of one class (Name) inside another (Employee). It displays the employee ID and full name correctly.
+The program successfully demonstrates constructor chaining using inheritance. When a Dog object is created, the Animal constructor executes first, followed by the Dog constructor.
+
 
 

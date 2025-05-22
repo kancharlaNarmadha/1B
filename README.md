@@ -1,8 +1,9 @@
 
-# EX 3D StringTokenizer in java
+# EX 4A Introduction to Java Constructor
 ## DATE:
 ## AIM:
-To write a java program to print output upto separator symbol(,) based on input using nextToken method of the string tokenizer java.
+To write  a Java program using copy constructor to print the circumference of rectangle.[l=5,w=6]
+
 
 
 
@@ -13,15 +14,15 @@ To write a java program to print output upto separator symbol(,) based on input 
 
 ## Algorithm
 
-1.Create a class StringTokenizerExample and define the main() method to run the program.
+1.Create a class Rectangle with instance variables length and breadth.
 
-2.Use a Scanner object to read a comma-separated string input from the user.
+2.Define a parameterized constructor to initialize a rectangle with given dimensions.
 
-3.Create a StringTokenizer object using the input string and "," as the delimiter.
+3.Create a copy constructor that initializes a new object using the values of an existing Rectangle object.
 
-4.Check if there are tokens remaining using hasMoreTokens().
+4.Define an area() method that returns the product of length and breadth.
 
-5.Print the next token using nextToken() if available.
+5.In the main() method, create one object with values, use the copy constructor to create another, and print the area of both rectangles.
 
 
 
@@ -35,31 +36,42 @@ To write a java program to print output upto separator symbol(,) based on input 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.*;
-public class StringTokenizerExample {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        StringTokenizer tokenizer = new StringTokenizer(input, ",");
-        if (tokenizer.hasMoreTokens()) {
-            System.out.println("Next token is : " + tokenizer.nextToken());
-        }
-    }
+class Rectangle { 
+    int length;
+    int breadth;
+
+    Rectangle(int length, int breadth) {  
+        this.length = length;
+        this.breadth = breadth;
+    } 
+
+    Rectangle(Rectangle obj) { 
+        this.length = obj.length;
+        this.breadth = obj.breadth;
+    } 
+
+    int area() { 
+        return length * breadth;
+    } 
 }
+
+public class CopyConstructor { 
+    public static void main(String[] args) { 
+        Rectangle a = new Rectangle(11,2); 
+        Rectangle b = new Rectangle(a);
+
+        System.out.println("Area  of First Rectangle : " + a.area());
+        System.out.println("Area of First Second Rectangle : " + b.area());
+    } 
+}
+
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/fbbbb9b2-e6e8-4d35-a373-81523565a96f)
+![image](https://github.com/user-attachments/assets/4d1e5a69-66eb-4bee-9ed7-bdf8cacd542f)
 
 
 ## Result:
-The program successfully reads a comma-separated string from the user and prints the first token using StringTokenizer.
-
-
-
-
-
-
-
+The program successfully demonstrates the use of a copy constructor in Java. It creates a new object with the same values as another and calculates the area for both.
 

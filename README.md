@@ -1,8 +1,9 @@
 
-# EX 5C  Getter and Setter method
+# EX 5D IS-A relationship and HAS-A relationship
 ## DATE:
 ## AIM:
-To create a java program to print the product of two number using getter and setter method.
+To write a java program to print the addition of two numbers, read two values use class and objects.Apply the has-a relationship concepts.
+
 
 Note:
 
@@ -23,16 +24,15 @@ read the input value in string format.
 
 ## Algorithm
 
-1.Create a class SetAndGet with two private string variables a and b.
+1.Create a class add with a method sum(int a, int b) that returns the sum of two integers.
 
-2.Define a method setadd(String a, String b) to assign values to a and b.
+2.In the Main class, declare variables for input and result (a, b, s).
 
-3.Define a method getadd() to convert the strings to integers and print their product.
+3.Use Scanner to take two integer inputs from the user.
 
-4.In the main() method, take two string inputs using Scanner.
+4.Create an object of the add class and call the sum() method with the inputs.
 
-5.Call setadd() to store the values and getadd() to compute and display the product.
-
+5.Print the result of the addition returned by the sum() method.
 
 
 
@@ -43,32 +43,22 @@ read the input value in string format.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.*;
-public class SetAndGet {
-private String a;
-private String b;
-
-public void getadd() {
-    int a1=Integer.parseInt(a);
-    int b1=Integer.parseInt(b);
-	System.out.print("Product is " + (a1*b1)); 
-	
+import java.util.Scanner;
+class add{
+   int sum(int a, int b) {
+        return (a + b);
+    } 
 }
-public void setadd(String a,String b) {
- this.a =a;
- this.b=b;
-}
-
-public static void main(String args[]){
- Scanner sc=new Scanner(System.in);
- SetAndGet obj = new SetAndGet();
- String str=sc.nextLine();
- String str1=sc.nextLine();
- 
- obj.setadd(str,str1);
- 
- obj.getadd();
-}
+public class Main {
+    public static void main(String args[]) {
+        int a, b, s;
+        Scanner sc = new Scanner(System.in);
+        a = sc.nextInt();
+        b = sc.nextInt();
+        add dd = new add();
+        s = dd.sum(a, b);
+        System.out.println("Sum is:" + s);
+    }
 }
 
 
@@ -76,9 +66,10 @@ public static void main(String args[]){
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/c8a0cb50-c109-4794-bc25-85ea58d0cb2b)
+![image](https://github.com/user-attachments/assets/f0977395-0e95-47c1-81a9-f92558af1382)
 
 
 ## Result:
-The program successfully demonstrates the use of getter and setter methods to read string inputs, convert them to integers, and print their product.
+The program successfully reads two integers from the user, calculates their sum using a separate method in another class, and displays the result.
+
 

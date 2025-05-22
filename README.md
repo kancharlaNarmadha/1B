@@ -1,12 +1,10 @@
 
-# EX 8B IO & FILE -READER/WRITER
+# EX 8C FILTER INPUT/OUTPUT STREAMS
 ## DATE:
 ## AIM:
-To write a Java Program to read the content from the String using Reader
+To write a Java Program to get the actual number of available bytes in the file using filter input stream.
 
-Note: Get the Input String from the User and Display the Content of the String using predefined function
-
- Initialize char[] array = new char[39];
+Note:Already sample.txt file was created. Read the input from the user for read method
 
 
 
@@ -20,15 +18,15 @@ Note: Get the Input String from the User and Display the Content of the String u
 ## Algorithm
 
 
-1.Import necessary classes from java.io.* and java.util.*.
+1.Start the program by importing necessary classes and creating a FileInputStream to read from "sample.txt".
 
-2.Accept a string input from the user using Scanner.
+2.Wrap the FileInputStream in a BufferedInputStream to enable filtering and buffering features.
 
-3.Create a char[] array to store characters read from the input string.
+3.Use a Scanner to take user input for how many bytes to read.
 
-4.Create a StringReader object and use the read() method to read characters into the array.
+4.Display the number of available bytes before and after reading the specified number of bytes using a for loop.
 
-5.Print the content of the array and close the StringReader inside a try-catch block.
+5.Close both streams (file1 and filter) properly to release system resources.
 
 
 
@@ -40,28 +38,24 @@ Note: Get the Input String from the User and Display the Content of the String u
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-    import java.io.*;  
-    import java.util.*;
-    public class JavaCharArrayReaderReadExample4 {  
-       public static void main(String[] args) {  
-    Scanner sc=new Scanner(System.in);
-    String data=sc.nextLine();
-   
-    char[] array = new char[39];
-    try {
-      // Create a StringReader
-      StringReader input = new StringReader(data);
-      //Use the read method
-      input.read(array);
-      System.out.println("Data read from the string:");
-      System.out.println(array);
-      input.close();
-    }
-    catch(Exception e) {
-      e.getStackTrace();
-    }
-       }  
-    }  
+         FileInputStream  file1 = new FileInputStream("sample.txt");  
+        FilterInputStream filter = new BufferedInputStream(file1);  
+        Scanner sc=new Scanner(System.in);
+               int sk=sc.nextInt();
+         System.out.println("Available bytes in the file: " +filter.available());
+        for(int i=0;i<sk;i++)
+        {
+            filter.read();
+        }
+          System.out.println("Available bytes in the file: " +filter.available());
+  file1.close();  
+        filter.close();  
+ 
+            
+      
+ 
+            
+      
                
 
 
@@ -69,11 +63,13 @@ Register Number: 212222110016
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/075296ab-a414-4845-aa21-56eb69cf1720)
+
+![image](https://github.com/user-attachments/assets/ca93375b-f935-410c-b0f7-ab2e1353f590)
 
 
 ## Result:
-Thus, the program to implement a Java Program to read a byte in a file "testout.txt" using FileInputStream has been successfully executed.
+Thus, the program to implement a Java Program using BufferedInputStream to check and read available bytes from a file "sample.txt" has been successfully executed.
+
 
 
 

@@ -1,9 +1,10 @@
 
-# EX 7B EXCEPTION HANDLING (Finally block- Throw-Throws- Final vs Finally vs Finalize)
+# EX 7C THREAD & THREAD GROUPS
 ## DATE:
 ## AIM:
-To write a Java program to demonstrate control flow of try-catch-finally clause when ArrayIndexOutOfBoundsException occur in try block and handled in catch block
+To write a Java program to count the vowels and consonant in the given string by calling run method
 
+Note: Get the value from the User
 
 
 
@@ -16,15 +17,15 @@ To write a Java program to demonstrate control flow of try-catch-finally clause 
 
 ## Algorithm
 
-1.Create an integer array arr with size 4 (indexes 0 to 3).
+1.Create a class VowelConsonantCounter that implements Runnable and receives a string input through the constructor.
 
-2.Use a try block to access an invalid index (arr[4]), which causes an ArrayIndexOutOfBoundsException.
+2.Override the run() method to count vowels and consonants in the input string using a loop.
 
-3.Handle the exception using a catch block that catches and prints a message when the exception occurs.
+3.Use Character.isLetter() to ensure only letters are considered, and identify vowels using "aeiou".
 
-4.Use a finally block to print a message indicating it always executes, regardless of whether an exception occurs.
+4.In the main() method, read a string from the user using Scanner.
 
-5.Print a final message outside the try-catch-finally structure to confirm program flow continues.
+5.Create and start a Thread by passing an instance of VowelConsonantCounter to count vowels and consonants concurrently.
 
 
 
@@ -36,20 +37,45 @@ To write a Java program to demonstrate control flow of try-catch-finally clause 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-public class HelloWorld {
-    public static void main(String[] args) {
-        int[] arr = new int[4];
+import java.util.Scanner;
 
-        try {
-            int i = arr[4];
-            System.out.println("Inside try block");
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("Exception caught in catch block");
-        } finally {
-            System.out.println("finally block executed");
+class VowelConsonantCounter implements Runnable {
+    String input;
+
+    public VowelConsonantCounter(String input) {
+        this.input = input;
+    }
+
+    public void run() {
+        int vowels = 0, consonants = 0;
+        input = input.toLowerCase();
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+
+            if (Character.isLetter(ch)) {
+                if ("aeiou".indexOf(ch) != -1) {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            }
         }
 
-        System.out.println("Outside try-catch-finally clause");
+        System.out.println("Number of vowels: " + vowels);
+        System.out.println("Number of consonants: " + consonants);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String userInput = sc.nextLine();
+
+        VowelConsonantCounter counter = new VowelConsonantCounter(userInput);
+        Thread t = new Thread(counter);
+        t.start();
     }
 }
 
@@ -59,11 +85,12 @@ public class HelloWorld {
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4cbac128-dcdc-40f4-b031-4c2ded52aedd)
+![image](https://github.com/user-attachments/assets/264716fd-df19-4533-8e08-565ba950e1d8)
 
 
 ## Result:
-The program successfully demonstrates exception handling using try-catch-finally. The catch block handles the array index error, and the finally block executes unconditionally.
+The program successfully uses a thread to count and display the number of vowels and consonants in a user-given string.
+
 
 
 

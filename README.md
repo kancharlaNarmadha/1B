@@ -1,8 +1,8 @@
 
-# EX 7A POLYMORPHISM & EXCEPTION HANDLING
+# EX 7B EXCEPTION HANDLING (Finally block- Throw-Throws- Final vs Finally vs Finalize)
 ## DATE:
 ## AIM:
-To write a java program to perform sum of two numbers and three numbers using Method Overloading(Compile time polymorphism)
+To write a Java program to demonstrate control flow of try-catch-finally clause when ArrayIndexOutOfBoundsException occur in try block and handled in catch block
 
 
 
@@ -16,15 +16,17 @@ To write a java program to perform sum of two numbers and three numbers using Me
 
 ## Algorithm
 
-1.Create a class raj with two sum() methods: one taking two integers, another taking three integers.
+1.Create an integer array arr with size 4 (indexes 0 to 3).
 
-2.The first sum() method returns the sum of two numbers, and the second one returns the sum of three numbers.
+2.Use a try block to access an invalid index (arr[4]), which causes an ArrayIndexOutOfBoundsException.
 
-3.In the main() method, use Scanner to take three integer inputs from the user.
+3.Handle the exception using a catch block that catches and prints a message when the exception occurs.
 
-4.Create an object of the raj class to call both sum() methods.
+4.Use a finally block to print a message indicating it always executes, regardless of whether an exception occurs.
 
-5.Display the results of both method calls to show method overloading in action.
+5.Print a final message outside the try-catch-finally structure to confirm program flow continues.
+
+
 
 
 
@@ -34,46 +36,35 @@ To write a java program to perform sum of two numbers and three numbers using Me
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
+public class HelloWorld {
+    public static void main(String[] args) {
+        int[] arr = new int[4];
 
-import java.util.*;
-class Calculation{
-  
- void sum(int a,int b)
-  {
-     System.out.println(a+b);
-  }
-  void sum(int a,int b,int c){
-     System.out.println(a+b+c);
-   }
-  
+        try {
+            int i = arr[4];
+            System.out.println("Inside try block");
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Exception caught in catch block");
+        } finally {
+            System.out.println("finally block executed");
+        }
+
+        System.out.println("Outside try-catch-finally clause");
+    }
 }
 
-
-public class HelloWorld{
-
-     public static void main(String []args)
-     {
-       
-  Calculation obj=new Calculation();
-  Scanner sc=new Scanner(System.in);
-  int a=sc.nextInt();
-  int b=sc.nextInt();
-  int c=sc.nextInt();
-  obj.sum(a,b);
-  obj.sum(a,b,c);
-}
-}
 
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/edee8242-94bc-4d63-ade4-766d1fe90672)
+![image](https://github.com/user-attachments/assets/4cbac128-dcdc-40f4-b031-4c2ded52aedd)
 
 
 ## Result:
-The program successfully demonstrates method overloading by defining multiple sum() methods with different parameter lists. The appropriate method is invoked based on the number of arguments passed.
+The program successfully demonstrates exception handling using try-catch-finally. The catch block handles the array index error, and the finally block executes unconditionally.
+
 
 
 

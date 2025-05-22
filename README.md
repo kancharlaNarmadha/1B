@@ -1,8 +1,9 @@
 
-# EX 3B String Buffer in java
+# EX 3C StringBuilder and toString method in java
 ## DATE:
 ## AIM:
-To write a java program to use delete() method of the StringBuffer class deletes the String from the specified beginIndex to endIndex.
+To write a java program use replace() method replaces the given String from the specified beginIndex and endIndex and use stringbuilder.
+
 
 
 
@@ -11,15 +12,15 @@ To write a java program to use delete() method of the StringBuffer class deletes
 
 ## Algorithm
 
-1.Create a class StringBufferExample4 and define the main() method to run the program.
+1.Create a class StringReplaceExample and define the main() method to execute the program.
 
-2.Use a Scanner object to take input from the user: a string, followed by two integers representing start and end indices.
+2.Use a Scanner object to read a string input from the user.
 
-3.Create a StringBuffer object initialized with the input string.
+3.Create a StringBuilder object initialized with the input string.
 
-4.Call the delete(startIndex, endIndex) method on the StringBuffer object to remove characters from startIndex to endIndex - 1.
+4.Use the replace(beginIndex, endIndex, replacement) method on the StringBuilder to replace the substring from beginIndex to endIndex - 1 with "Java".
 
-5.Print the modified string using System.out.println().
+5.Print the updated string using System.out.println().
 
 
 
@@ -35,35 +36,36 @@ Register Number: 212222110016
 ```
 import java.util.Scanner;
 
-public class StringBufferExample4 {
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
+public class StringReplaceExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         
-        String str1 = sc.nextLine();
+        String input = scanner.nextLine();
         
-        int startIndex = sc.nextInt();
+        String replacement = "Java";
+        int beginIndex = 1;
+        int endIndex = 3;
         
-        int endIndex = sc.nextInt();
+        StringBuilder sb = new StringBuilder(input);
+        sb.replace(beginIndex, endIndex, replacement);
         
-        StringBuffer sb = new StringBuffer(str1);
+        System.out.println( sb.toString());
         
-        sb.delete(startIndex, endIndex);
-         
-        System.out.println(sb);
-        
-        sc.close();
+        scanner.close();
     }
 }
+
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4cbc487d-5e60-4c7f-81b6-1dc138549071)
+![image](https://github.com/user-attachments/assets/cb90e109-bb64-461b-ad84-61f7b025bc8e)
 
 
 ## Result:
-The program successfully removes the specified substring from the input string using the StringBuffer.delete() method and displays the updated string.
+The program successfully replaces a portion of the input string (from index 1 to 2) with the word "Java" using StringBuilder.replace(), and then displays the modified string.
+
 
 
 

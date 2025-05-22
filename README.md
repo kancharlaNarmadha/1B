@@ -1,26 +1,16 @@
 
-# EX 6A Inner Class
+# EX 6B Multi Level Inheritance
 ## DATE:
 ## AIM:
-to write a Java Program using Method Local Inner Class for below Scenario.
+To create 3 classes Vehicle, Car and Alto. Class Alto extends Class Car and Class Car extends Class Vehicle.
 
-Create a class "Department" with
+Class Vehicle has display() and it displays “Vehicle Class”
 
-1. String value "Financial and Management Department"
+Class Car has print() and displays “Car Class”
 
-2. Create display() have String "ABC Industries" and inner class as "Inner"
+Class Alto has show() and displays “Alto Class"
 
-3. Inner class  print() to display department
-
-In main() access all function using its corresponding Object.
-
-Note:
-
-read the input value in string format.
-
-
-
-
+In Main class create Object for Alto class and access all methods.
 
 
 
@@ -33,16 +23,15 @@ read the input value in string format.
 
 ## Algorithm
 
-1.Create a class prog with an instance variable dept and a method display().
+1.Create a base class Vehicle with a method display() that prints "Vehicle Class".
 
-2.Inside the display() method, declare a local variable company.
+2.Create a subclass Car that extends Vehicle and adds a method print() to print "Car Class".
 
-3.Define a local inner class Inner inside the display() method.
+3.Create a subclass Alto that extends Car and adds a method show() to print "Alto Class".
 
-4.In the Inner class, define a method print() that prints both dept and company.
+4.In the main() method, create an object of Alto.
 
-5.In main(), create an object of prog and call the display() method.1.
-
+5.Call all three methods (display(), print(), show()) on the Alto object to demonstrate multilevel inheritance.
 
 
 
@@ -52,26 +41,30 @@ read the input value in string format.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class prog {
-    String dept = "Financial and Management Department";
-
+class Vehicle {
     void display() {
-        String company = "ABC Industries";
-
-        class Inner {
-            void print() {
-                System.out.println("Department is " + dept);
-                System.out.println("Company is " + company);
-            }
-        }
-
-        Inner obj = new Inner();
-        obj.print();
+        System.out.println("Vehicle Class");
     }
+}
 
+class Car extends Vehicle {
+    void print() {
+        System.out.println("Car Class");
+    }
+}
+
+class Alto extends Car {
+    void show() {
+        System.out.println("Alto Class");
+    }
+}
+
+public class Main {
     public static void main(String[] args) {
-        prog d = new prog();
-        d.display();
+        Alto obj = new Alto();
+        obj.display();
+        obj.print();
+        obj.show();
     }
 }
 
@@ -81,11 +74,12 @@ class prog {
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/3d63bd02-8c51-44e2-85d0-c0fa83f75410)
+![image](https://github.com/user-attachments/assets/4e48ad95-8b22-4f01-b948-9c7755cbbcf6)
 
 
 ## Result:
-The program successfully demonstrates the concept of a local inner class, where the inner class accesses both the outer class member and the local variable from the method in which it's defined.
+The program successfully demonstrates multilevel inheritance where the Alto class inherits methods from both Car and Vehicle classes, and all methods print their respective class names.
+
 
 
 

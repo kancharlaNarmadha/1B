@@ -1,12 +1,10 @@
 
-# EX 7D SYNCHRONIZATION
+# EX 8A IO-FILE- STREAMS
 ## DATE:
 ## AIM:
-To write a Java Program to perform multiplication table  for 5 & 7 using Synchronization block for the below Scenario
+To implement a Java Program to read a byte in a file "testout.txt" using FileInputStream
 
-1. Create a Class Table with void printTable method in that perform multiplication table
 
-Note :Assume Sleep as 400 ms  i.e Thread.Sleep(400)
 
 
 
@@ -19,15 +17,15 @@ Note :Assume Sleep as 400 ms  i.e Thread.Sleep(400)
 ## Algorithm
 
 
-1.Create a class Table that contains a static method printTable(int n) to print the multiplication table for a given number.
+1.Import java.io.* package to work with file input streams.
 
-2.Use static synchronized keyword to make the method thread-safe so only one thread accesses it at a time.
+2.Use FileInputStream to open a file named "testout.txt" for reading.
 
-3.Inside the method, use a loop to print the table from 1 to 10 for the given number.
+3.Read a character from the file using input.read() and store it in an integer variable.
 
-4.Add a delay using Thread.sleep(400) after printing each line to simulate thread activity.
+4.Print the character read by converting the integer to a character using (char)i.
 
-5.Surround Thread.sleep() with try-catch block to handle any InterruptedException that may occur during sleep.
+5.Close the stream using input.close() inside a try-catch block to handle exceptions.
 
 
 
@@ -37,31 +35,35 @@ Note :Assume Sleep as 400 ms  i.e Thread.Sleep(400)
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
+  try
+             {
+                FileInputStream input=new FileInputStream("testout.txt");
+                
+                int i=input.read();
+            
+                
+                    System.out.println((char)i);
+                    input.read();
+                
+                input.close();
+                
 
+               
+  
+                }
+                catch(Exception e){System.out.println(e);}
+               
 
-class Table{
-    static synchronized void printTable(int n){
-        for(int i=1;i<=10;i++){
-            System.out.println("Multiplication Table for "+n+"*"+i+" :"+(n*i));
-        }
-        try{
-            Thread.sleep(400);
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-    }
-}
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4fdd7b53-3bab-4253-a800-047af8af9b1a)
+![image](https://github.com/user-attachments/assets/1c7dc877-9059-482b-9a2d-657b19893e01)
 
 
 ## Result:
-The method prints a multiplication table from 1 to 10 for the given input number, and is synchronized to prevent concurrent access by multiple threads.
+Thus the program to implement a Java Program to read a byte in a file "testout.txt" using FileInputStream has been successfully executed
 
 
 

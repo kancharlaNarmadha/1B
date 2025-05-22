@@ -1,8 +1,9 @@
 
-# EX 4A Introduction to Java Constructor
+# EX 4B Introduction to Inheritance
 ## DATE:
 ## AIM:
-To write  a Java program using copy constructor to print the circumference of rectangle.[l=5,w=6]
+To write a Java program for below situation, Employee object contains member 'Emp_Id'. It contains object named name, which contains its own informations such as Fname, Mname, Lname.
+
 
 
 
@@ -14,15 +15,15 @@ To write  a Java program using copy constructor to print the circumference of re
 
 ## Algorithm
 
-1.Create a class Rectangle with instance variables length and breadth.
+1.Create a class Name with three string variables: Fname, Mname, and Lname, and a method dispName() to display the full name.
 
-2.Define a parameterized constructor to initialize a rectangle with given dimensions.
+2.Create a class Employee with an integer variable Emp_Id and an object of class Name.
 
-3.Create a copy constructor that initializes a new object using the values of an existing Rectangle object.
+3.Define the method dispName(int id) in the Employee class to assign and display the employee ID.
 
-4.Define an area() method that returns the product of length and breadth.
+4.In the main() method, create an object of the Employee class.
 
-5.In the main() method, create one object with values, use the copy constructor to create another, and print the area of both rectangles.
+5.Call the methods to display the employee ID and the full name by accessing the Name object inside the Employee object.
 
 
 
@@ -36,42 +37,48 @@ To write  a Java program using copy constructor to print the circumference of re
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class Rectangle { 
-    int length;
-    int breadth;
+class Name {
+    String Fname;
+    String Mname;
+    String Lname;
 
-    Rectangle(int length, int breadth) {  
-        this.length = length;
-        this.breadth = breadth;
-    } 
-
-    Rectangle(Rectangle obj) { 
-        this.length = obj.length;
-        this.breadth = obj.breadth;
-    } 
-
-    int area() { 
-        return length * breadth;
-    } 
+    void dispName(String fn, String mn, String ln) {
+        Fname = fn;
+        Mname = mn;
+        Lname = ln;
+        System.out.println( Fname + " " + Mname + " " + Lname);
+    }
 }
 
-public class CopyConstructor { 
-    public static void main(String[] args) { 
-        Rectangle a = new Rectangle(11,2); 
-        Rectangle b = new Rectangle(a);
+class Employee {
+    int Emp_Id;
+    Name obj = new Name();
 
-        System.out.println("Area  of First Rectangle : " + a.area());
-        System.out.println("Area of First Second Rectangle : " + b.area());
-    } 
+    void dispName(int id) {
+        Emp_Id = id;
+        System.out.println(Emp_Id);
+    }
 }
+
+public class Main {
+    public static void main(String[] args) {
+        Employee emp = new Employee();
+    
+        emp.dispName(101);
+       
+        emp.obj.dispName("B", "Leo", "John");
+    }
+}
+
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4d1e5a69-66eb-4bee-9ed7-bdf8cacd542f)
+![image](https://github.com/user-attachments/assets/751700fb-a49e-4bd6-9d41-cbb76ffb6dd0)
 
 
 ## Result:
-The program successfully demonstrates the use of a copy constructor in Java. It creates a new object with the same values as another and calculates the area for both.
+The program successfully demonstrates composition in Java by using an object of one class (Name) inside another (Employee). It displays the employee ID and full name correctly.
+
 

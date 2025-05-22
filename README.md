@@ -1,16 +1,18 @@
 
-# EX 6B Multi Level Inheritance
+# EX 6C Hierarchical Inheritance & Multiple Inheritance
 ## DATE:
 ## AIM:
-To create 3 classes Vehicle, Car and Alto. Class Alto extends Class Car and Class Car extends Class Vehicle.
+To write a Java Program for below Scenario.
 
-Class Vehicle has display() and it displays “Vehicle Class”
+Hierarchical Inheritance Example in Python
 
-Class Car has print() and displays “Car Class”
+1. Media Class have constructor to display "Parent Class is Media"
 
-Class Alto has show() and displays “Alto Class"
+2. Magazine Class constructor call its parent constructor and display "Magazine is the one of the Child of Media Class"
 
-In Main class create Object for Alto class and access all methods.
+3. Channel Class constructor call its parent constructor and display "Channel is the one of the Child of Media Class"
+
+4. In Main class create object for Child class and access its corresponding Constructor
 
 
 
@@ -23,15 +25,15 @@ In Main class create Object for Alto class and access all methods.
 
 ## Algorithm
 
-1.Create a base class Vehicle with a method display() that prints "Vehicle Class".
+1.Create a parent class Media with a constructor that prints a message.
 
-2.Create a subclass Car that extends Vehicle and adds a method print() to print "Car Class".
+2.Create a subclass Magazine that calls the parent constructor using super() and prints its own message.
 
-3.Create a subclass Alto that extends Car and adds a method show() to print "Alto Class".
+3.Create another subclass Channel that also calls the parent constructor and prints its own message.
 
-4.In the main() method, create an object of Alto.
+4.In the main() method, create objects of Magazine and Channel classes.
 
-5.Call all three methods (display(), print(), show()) on the Alto object to demonstrate multilevel inheritance.
+5.Observe constructor calls showing how parent and child constructors are invoked in inheritance.
 
 
 
@@ -41,32 +43,36 @@ In Main class create Object for Alto class and access all methods.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-class Vehicle {
-    void display() {
-        System.out.println("Vehicle Class");
+class Media {
+    Media() {
+        System.out.println("Parent Class is Media");
     }
 }
 
-class Car extends Vehicle {
-    void print() {
-        System.out.println("Car Class");
+class Magazine extends Media {
+    Magazine() {
+        super();
+        System.out.println("Magazine is the one of the Child of Media Class");
     }
 }
 
-class Alto extends Car {
-    void show() {
-        System.out.println("Alto Class");
+class Channel extends Media {
+    Channel() {
+        super();
+        System.out.println("Channel is the one of the Child of Media Class");
     }
 }
 
-public class Main {
+public class prog {
     public static void main(String[] args) {
-        Alto obj = new Alto();
-        obj.display();
-        obj.print();
-        obj.show();
+        Magazine mag = new Magazine();
+
+        Channel ch = new Channel();
     }
 }
+
+
+
 
 
 
@@ -74,11 +80,12 @@ public class Main {
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4e48ad95-8b22-4f01-b948-9c7755cbbcf6)
+![image](https://github.com/user-attachments/assets/fcf41418-4ab8-4248-9686-e0780af9e9db)
 
 
 ## Result:
-The program successfully demonstrates multilevel inheritance where the Alto class inherits methods from both Car and Vehicle classes, and all methods print their respective class names.
+The program demonstrates constructor chaining in inheritance. When a child class object is created, the parent class constructor is called first, followed by the child class constructor. This happens for both Magazine and Channel objects.
+
 
 
 

@@ -1,13 +1,10 @@
 
-# EX 8C FILTER INPUT/OUTPUT STREAMS
+# EX 8D BUFFERED INPUT/OUTPUT STREAMS
 ## DATE:
 ## AIM:
-To write a Java Program to get the actual number of available bytes in the file using filter input stream.
+To write a Java Program to read student data (name ,department, rollno) from the user using the BufferedReader class.
 
-Note:Already sample.txt file was created. Read the input from the user for read method
-
-
-
+Consider Student Class using default constructor and instance method for displaying Student name, department, rollno
 
 
 
@@ -18,15 +15,15 @@ Note:Already sample.txt file was created. Read the input from the user for read 
 ## Algorithm
 
 
-1.Start the program by importing necessary classes and creating a FileInputStream to read from "sample.txt".
+1.Start the program by importing BufferedReader, InputStreamReader, and required classes.
 
-2.Wrap the FileInputStream in a BufferedInputStream to enable filtering and buffering features.
+2.Use BufferedReader to read name, department, and roll number from the user via console.
 
-3.Use a Scanner to take user input for how many bytes to read.
+3.Create a Student object using the constructor with the collected input data.
 
-4.Display the number of available bytes before and after reading the specified number of bytes using a for loop.
+4.Define and call the displayDetails() method to print the student’s information.
 
-5.Close both streams (file1 and filter) properly to release system resources.
+5.Successfully display the details of the student to the console.
 
 
 
@@ -38,18 +35,37 @@ Note:Already sample.txt file was created. Read the input from the user for read 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-         FileInputStream  file1 = new FileInputStream("sample.txt");  
-        FilterInputStream filter = new BufferedInputStream(file1);  
-        Scanner sc=new Scanner(System.in);
-               int sk=sc.nextInt();
-         System.out.println("Available bytes in the file: " +filter.available());
-        for(int i=0;i<sk;i++)
-        {
-            filter.read();
-        }
-          System.out.println("Available bytes in the file: " +filter.available());
-  file1.close();  
-        filter.close();  
+      import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+class Student{
+String name;
+int rollno;
+String dept;
+Student(String name, String dept, int rollno){
+this.name = name;
+this.dept = dept;
+this.rollno = rollno;
+}
+public void displayDetails(){
+System.out.println("Name: "+this.name);
+System.out.println("Department: "+this.dept);
+System.out.println("Rollno: "+this.rollno);
+}
+}
+public class ReadData {
+public static void main(String args[]) throws IOException {
+BufferedReader reader =new BufferedReader(new InputStreamReader(System.in));
+
+String name = reader.readLine();
+
+String dept = reader.readLine();
+
+int rollno = Integer.parseInt(reader.readLine());
+Student std = new Student(name, dept, rollno);
+std.displayDetails();
+}
+}
  
             
       
@@ -64,11 +80,12 @@ Register Number: 212222110016
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/ca93375b-f935-410c-b0f7-ab2e1353f590)
+![image](https://github.com/user-attachments/assets/326d4af7-19c5-48aa-af00-19a92480a395)
 
 
 ## Result:
-Thus, the program to implement a Java Program using BufferedInputStream to check and read available bytes from a file "sample.txt" has been successfully executed.
+Thus, the program to implement a Java Program using BufferedReader to read data from the user and display student details has been successfully executed.
+
 
 
 

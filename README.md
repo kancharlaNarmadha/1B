@@ -1,11 +1,12 @@
 
-# EX 7C THREAD & THREAD GROUPS
+# EX 7D SYNCHRONIZATION
 ## DATE:
 ## AIM:
-To write a Java program to count the vowels and consonant in the given string by calling run method
+To write a Java Program to perform multiplication table  for 5 & 7 using Synchronization block for the below Scenario
 
-Note: Get the value from the User
+1. Create a Class Table with void printTable method in that perform multiplication table
 
+Note :Assume Sleep as 400 ms  i.e Thread.Sleep(400)
 
 
 
@@ -17,17 +18,16 @@ Note: Get the value from the User
 
 ## Algorithm
 
-1.Create a class VowelConsonantCounter that implements Runnable and receives a string input through the constructor.
 
-2.Override the run() method to count vowels and consonants in the input string using a loop.
+1.Create a class Table that contains a static method printTable(int n) to print the multiplication table for a given number.
 
-3.Use Character.isLetter() to ensure only letters are considered, and identify vowels using "aeiou".
+2.Use static synchronized keyword to make the method thread-safe so only one thread accesses it at a time.
 
-4.In the main() method, read a string from the user using Scanner.
+3.Inside the method, use a loop to print the table from 1 to 10 for the given number.
 
-5.Create and start a Thread by passing an instance of VowelConsonantCounter to count vowels and consonants concurrently.
+4.Add a delay using Thread.sleep(400) after printing each line to simulate thread activity.
 
-
+5.Surround Thread.sleep() with try-catch block to handle any InterruptedException that may occur during sleep.
 
 
 
@@ -37,59 +37,32 @@ Note: Get the value from the User
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.Scanner;
 
-class VowelConsonantCounter implements Runnable {
-    String input;
 
-    public VowelConsonantCounter(String input) {
-        this.input = input;
-    }
-
-    public void run() {
-        int vowels = 0, consonants = 0;
-        input = input.toLowerCase();
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
-            if (Character.isLetter(ch)) {
-                if ("aeiou".indexOf(ch) != -1) {
-                    vowels++;
-                } else {
-                    consonants++;
-                }
-            }
+class Table{
+    static synchronized void printTable(int n){
+        for(int i=1;i<=10;i++){
+            System.out.println("Multiplication Table for "+n+"*"+i+" :"+(n*i));
         }
-
-        System.out.println("Number of vowels: " + vowels);
-        System.out.println("Number of consonants: " + consonants);
+        try{
+            Thread.sleep(400);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 }
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        String userInput = sc.nextLine();
-
-        VowelConsonantCounter counter = new VowelConsonantCounter(userInput);
-        Thread t = new Thread(counter);
-        t.start();
-    }
-}
-
-
 
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/264716fd-df19-4533-8e08-565ba950e1d8)
+![image](https://github.com/user-attachments/assets/4fdd7b53-3bab-4253-a800-047af8af9b1a)
 
 
 ## Result:
-The program successfully uses a thread to count and display the number of vowels and consonants in a user-given string.
+The method prints a multiplication table from 1 to 10 for the given input number, and is synchronized to prevent concurrent access by multiple threads.
+
 
 
 

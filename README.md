@@ -1,8 +1,9 @@
 
-# EX 3C StringBuilder and toString method in java
+# EX 3D StringTokenizer in java
 ## DATE:
 ## AIM:
-To write a java program use replace() method replaces the given String from the specified beginIndex and endIndex and use stringbuilder.
+To write a java program to print output upto separator symbol(,) based on input using nextToken method of the string tokenizer java.
+
 
 
 
@@ -12,15 +13,15 @@ To write a java program use replace() method replaces the given String from the 
 
 ## Algorithm
 
-1.Create a class StringReplaceExample and define the main() method to execute the program.
+1.Create a class StringTokenizerExample and define the main() method to run the program.
 
-2.Use a Scanner object to read a string input from the user.
+2.Use a Scanner object to read a comma-separated string input from the user.
 
-3.Create a StringBuilder object initialized with the input string.
+3.Create a StringTokenizer object using the input string and "," as the delimiter.
 
-4.Use the replace(beginIndex, endIndex, replacement) method on the StringBuilder to replace the substring from beginIndex to endIndex - 1 with "Java".
+4.Check if there are tokens remaining using hasMoreTokens().
 
-5.Print the updated string using System.out.println().
+5.Print the next token using nextToken() if available.
 
 
 
@@ -34,37 +35,27 @@ To write a java program use replace() method replaces the given String from the 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.Scanner;
-
-public class StringReplaceExample {
+import java.util.*;
+public class StringTokenizerExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
         String input = scanner.nextLine();
-        
-        String replacement = "Java";
-        int beginIndex = 1;
-        int endIndex = 3;
-        
-        StringBuilder sb = new StringBuilder(input);
-        sb.replace(beginIndex, endIndex, replacement);
-        
-        System.out.println( sb.toString());
-        
-        scanner.close();
+        StringTokenizer tokenizer = new StringTokenizer(input, ",");
+        if (tokenizer.hasMoreTokens()) {
+            System.out.println("Next token is : " + tokenizer.nextToken());
+        }
     }
 }
-
-
     
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/cb90e109-bb64-461b-ad84-61f7b025bc8e)
+![image](https://github.com/user-attachments/assets/fbbbb9b2-e6e8-4d35-a373-81523565a96f)
 
 
 ## Result:
-The program successfully replaces a portion of the input string (from index 1 to 2) with the word "Java" using StringBuilder.replace(), and then displays the modified string.
+The program successfully reads a comma-separated string from the user and prints the first token using StringTokenizer.
+
 
 
 

@@ -1,8 +1,9 @@
 
-# EX 10C Java List Interface
+# EX 10D Java HashSet & LinkedHashSet
 ## DATE:
 ## AIM:
-To write a Java program of swap two elements in a list. Swapping 1st(index 0) element with the 3rd(index 2) element.
+To write a java program use hashset concepts in collection and add the elements to the hashset and then display the elements iterate(use while)and ignore the duplicate elements in hashset.
+
 
 
 
@@ -19,15 +20,15 @@ To write a Java program of swap two elements in a list. Swapping 1st(index 0) el
 
 ## Algorithm
 
-1.Import required classes and define the main class ListSwapExample.
+1.Import required classes and define the main class HashSetDemo.
 
-2.Create an ArrayList and read its size and elements from the user using Scanner.
+2.Create a HashSet to store unique string elements.
 
-3.Display the list contents before swapping.
+3.Read n strings from the user and add them to the set using add().
 
-4.Swap the 1st and 3rd elements of the list using Collections.swap() if size ≥ 3.
+4.Create an Iterator to traverse the HashSet.
 
-5.Display the list contents after swapping.
+5.Use a while loop with the iterator to display each element in the set.
 
 
 
@@ -41,41 +42,28 @@ To write a Java program of swap two elements in a list. Swapping 1st(index 0) el
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-    
-
 import java.util.*;
 
-public class ListSwapExample {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+public class HashSetDemo{
 
-        List<String> list = new ArrayList<>();
-        
-        int size = sc.nextInt();
-        sc.nextLine(); 
-        
-        for (int i = 0; i < size; i++) {
-            list.add(sc.nextLine());
-        }
+public static void main(String args[]){
 
-        System.out.println("Array list before Swap:");
-        for (String item : list) {
-            System.out.println(item);
-        }
+HashSet <String> hs = new HashSet <String>();
+Scanner sc=new Scanner(System.in);
+int n=sc.nextInt();
+for(int i=0;i<n;i++)
+{
+    
+hs.add(sc.next());
 
-        if (list.size() >= 3) {
-            Collections.swap(list, 0, 2);
-        } else {
-            System.out.println("Not enough elements to perform swap.");
-        }
+}
+ Iterator<String> i=hs.iterator();  
+ while(i.hasNext())  
+ {  
+    System.out.println(i.next());  
+ }  
 
-        System.out.println("Array list after swap:");
-        for (String item : list) {
-            System.out.println(item);
-        }
-
-        sc.close();
-    }
+}
 }
 
 
@@ -92,10 +80,11 @@ public class ListSwapExample {
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/8450153b-fd92-4e14-996e-41048236c619)
+![image](https://github.com/user-attachments/assets/04367cd4-921e-4ed0-ba34-b1aa33eded3e)
 
 
 ## Result:
-Thus, the program to implement a Java program using ArrayList and Collections.swap() to exchange elements has been successfully executed.
+Thus, the program to implement a Java program using HashSet and Iterator to store and display unique elements has been successfully executed.
+
 
 

@@ -1,9 +1,8 @@
 
-# EX 10A Java Collection FrameWork/Interfaces & Java ArrayList
+# EX 10B Java Linked List
 ## DATE:
 ## AIM:
-To create an Array List to store n numbers (add elements of type Integer) and then display the n numbers.
-
+To apply the getFirst() method in LinkedList java concepts.Create a linkedlist, read size of the list , read the elements for the linkedlist and display the first index of the element from the linkedlist.
 
 
 
@@ -19,15 +18,16 @@ To create an Array List to store n numbers (add elements of type Integer) and th
 
 ## Algorithm
 
-1.Import required classes and define the main class NumberList.
+1.Import required classes and define the main class Main.
 
-2.Use Scanner to read the number of elements from the user.
+2.Create a LinkedList to store string elements (car names).
 
-3.Create an ArrayList to store integer values.
+3.Read the number of elements from the user using Scanner.
 
-4.Read integers from the user and add them to the list using add().
+4.Add each input string to the LinkedList using add().
 
-5.Iterate through the list using an enhanced for-loop and print each number.
+5.Display the first element of the linked list using getFirst().
+
 
 
 
@@ -44,26 +44,20 @@ Register Number: 212222110016
 ```
     
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
-public class NumberList {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        int n = scanner.nextInt();
-        
-        ArrayList<Integer> numbers = new ArrayList<>();
-        
-        for (int i = 0; i < n; i++) {
-            int num = scanner.nextInt();
-            numbers.add(num);
-        }
-        
-        for (Integer number : numbers) {
-            System.out.println(number);
-        }
+public class Main {
+  public static void main(String[] args) {
+   Scanner sc=new Scanner(System.in);
+    LinkedList<String> cars = new LinkedList<String>();
+    int n=sc.nextInt();
+    for(int i=0;i<n;i++)
+    {
+    cars.add(sc.next());
     }
+    
+    System.out.println("First Element :" + cars.getFirst());
+  }
 }
 
       
@@ -79,8 +73,9 @@ public class NumberList {
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/eb8f4246-b06f-4123-a2cd-b832c8d91bd4)
+![image](https://github.com/user-attachments/assets/111a0856-2ff4-402a-9890-083a020b335b)
 
 
 ## Result:
-Thus, the program to implement a Java program using ArrayList to store and display a list of numbers has been successfully executed.
+Thus, the program to implement a Java program using LinkedList to store and retrieve the first element has been successfully executed.
+

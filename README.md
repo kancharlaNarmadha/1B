@@ -1,10 +1,12 @@
 
-# EX 9A  I/O-STREAM
+# EX 9B  BYTE ARRAY I/O
 ## DATE:
 ## AIM:
-To write a Java Program to read a boolean Value from a file "OutputFile.txt" using DataInputStream . Use Predefined Function read for reading
+To write a java program to write common data into 2 files (F1.txt & F2.txt) using ByteArrayOutputStream
 
-Note Initialize DataInputStream Object name as "di"
+Note:
+
+create two files F1.txt and F2.txt  Read the two Integer value from the user, Summation of two integer value should be in the F1.txt and F2.txt
 
 
 
@@ -21,15 +23,15 @@ Note Initialize DataInputStream Object name as "di"
 
 ## Algorithm
 
-1.Create a FileInputStream to read from the file OutputFile.txt.
+1.Create FileOutputStream objects for two files (F1.txt and F2.txt).
 
-2.Wrap the input stream with DataInputStream to enable reading primitive data types.
+2.Create a ByteArrayOutputStream to hold output data in memory.
 
-3.Read a boolean value from the file using readBoolean().
+3.Read two integers from the user using Scanner and compute their sum.
 
-4.Print the boolean value to the console.
+4.Write the sum to the ByteArrayOutputStream and then to both files using writeTo().
 
-5.Close both FileInputStream and DataInputStream to release resources.
+5.Close the ByteArrayOutputStream and display a success message.
 
 
 
@@ -43,14 +45,19 @@ Note Initialize DataInputStream Object name as "di"
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
- FileInputStream input = new FileInputStream("OutputFile.txt");  
-    DataInputStream di = new DataInputStream(input);  
- 
- boolean data =di.readBoolean();
-   
-      System.out.println(data);  
-    input.close();
-    di.close();
+  FileOutputStream fout=new FileOutputStream("F1.txt");
+          FileOutputStream fout2=new FileOutputStream("F2.txt");
+          ByteArrayOutputStream bout=new ByteArrayOutputStream();
+          Scanner sc=new Scanner(System.in);
+          int num=sc.nextInt();
+          int num1=sc.nextInt();
+          int num2=num+num1;
+          bout.write(num2);
+          bout.writeTo(fout);
+          bout.writeTo(fout2);
+          System.out.println("Success...");
+          bout.close();
+
     
 
       
@@ -66,11 +73,12 @@ Register Number: 212222110016
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/4b663566-dcce-4671-a4d0-48e7191a34a5)
+![image](https://github.com/user-attachments/assets/3d80c890-6d96-4ee0-a17e-c14a1c066eda)
 
 
 ## Result:
-Thus, the program to implement a Java program using DataInputStream to read a boolean value from a file has been successfully executed.
+Thus, the program to implement a Java program using ByteArrayOutputStream to write data to multiple files has been successfully executed.
+
 
 
 

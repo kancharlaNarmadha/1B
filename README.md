@@ -1,8 +1,9 @@
 
-# EX 10B Java Linked List
+# EX 10C Java List Interface
 ## DATE:
 ## AIM:
-To apply the getFirst() method in LinkedList java concepts.Create a linkedlist, read size of the list , read the elements for the linkedlist and display the first index of the element from the linkedlist.
+To write a Java program of swap two elements in a list. Swapping 1st(index 0) element with the 3rd(index 2) element.
+
 
 
 
@@ -18,17 +19,15 @@ To apply the getFirst() method in LinkedList java concepts.Create a linkedlist, 
 
 ## Algorithm
 
-1.Import required classes and define the main class Main.
+1.Import required classes and define the main class ListSwapExample.
 
-2.Create a LinkedList to store string elements (car names).
+2.Create an ArrayList and read its size and elements from the user using Scanner.
 
-3.Read the number of elements from the user using Scanner.
+3.Display the list contents before swapping.
 
-4.Add each input string to the LinkedList using add().
+4.Swap the 1st and 3rd elements of the list using Collections.swap() if size ≥ 3.
 
-5.Display the first element of the linked list using getFirst().
-
-
+5.Display the list contents after swapping.
 
 
 
@@ -46,19 +45,39 @@ Register Number: 212222110016
 
 import java.util.*;
 
-public class Main {
-  public static void main(String[] args) {
-   Scanner sc=new Scanner(System.in);
-    LinkedList<String> cars = new LinkedList<String>();
-    int n=sc.nextInt();
-    for(int i=0;i<n;i++)
-    {
-    cars.add(sc.next());
+public class ListSwapExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        List<String> list = new ArrayList<>();
+        
+        int size = sc.nextInt();
+        sc.nextLine(); 
+        
+        for (int i = 0; i < size; i++) {
+            list.add(sc.nextLine());
+        }
+
+        System.out.println("Array list before Swap:");
+        for (String item : list) {
+            System.out.println(item);
+        }
+
+        if (list.size() >= 3) {
+            Collections.swap(list, 0, 2);
+        } else {
+            System.out.println("Not enough elements to perform swap.");
+        }
+
+        System.out.println("Array list after swap:");
+        for (String item : list) {
+            System.out.println(item);
+        }
+
+        sc.close();
     }
-    
-    System.out.println("First Element :" + cars.getFirst());
-  }
 }
+
 
       
 
@@ -73,9 +92,10 @@ public class Main {
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/111a0856-2ff4-402a-9890-083a020b335b)
+![image](https://github.com/user-attachments/assets/8450153b-fd92-4e14-996e-41048236c619)
 
 
 ## Result:
-Thus, the program to implement a Java program using LinkedList to store and retrieve the first element has been successfully executed.
+Thus, the program to implement a Java program using ArrayList and Collections.swap() to exchange elements has been successfully executed.
+
 

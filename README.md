@@ -1,16 +1,9 @@
 
-# EX 9D SERILIZATION/DESERILIZATION
+# EX 12B Comparable and Comparator Interface
 ## DATE:
 ## AIM:
-To write a Java program to perform transient in Student details(name,dept,rollno)
+To write a java program to illustrate Comparator using a separate class(Percentage comparator).Read student name and percentage of student).Display in highest percentage to low using comparator.
 
-Note:
-
-Student details are stored in a file "student.txt" using Serialization.
-
-Create a class Studentinfo that implements Serializable interface to make its object serialized.
-
-Initialize transient for dept,,rollno
 
 
 
@@ -27,15 +20,15 @@ Initialize transient for dept,,rollno
 
 ## Algorithm
 
-1.Define a class Studentinfo that implements the Serializable interface.
+1.Define a Student class with name and percentage fields and a constructor.
 
-2.Declare data members: name as normal, and dept and rollno as transient.
+2.Implement a PercentageComparator class to compare students by percentage in descending order.
 
-3.Create a constructor to initialize all fields with user-provided values.
+3.Read a list of students (name and percentage) from the user and store them in an ArrayList.
 
-4.Assign values to name, dept, and rollno within the constructor.
+4.Sort the student list using Collections.sort() with the custom comparator.
 
-5.Use transient to skip serialization of dept and rollno during object serialization.
+5.Display the sorted list showing percentage and name.
 
 
 
@@ -49,18 +42,50 @@ Initialize transient for dept,,rollno
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
- class Studentinfo implements Serializable
-{
-    String name;
-   transient String dept;
-    transient int rollno;
-   
-    Studentinfo(String n, String r,int n1)
-    {
-    this.name = n;
-    this.dept = r;
-    this.rollno=n1;
-    }
+import java.util.*;
+
+class Student{
+
+	String name;
+	float percentage;
+	
+	Student(String name, float percentage){
+		this.name = name;
+		this.percentage = percentage;
+	}
+	
+}
+
+class PercentageComparator implements Comparator<Student>{
+	public int compare(Student stud1, Student stud2) {
+		if(stud1.percentage < stud2.percentage)
+			return 1;
+		return -1;
+	}
+}
+
+public class Main{
+	
+	public static void main(String args[]) {
+	
+		ArrayList<Student> studList = new ArrayList<Student>();
+		Scanner sc=new Scanner(System.in);
+		int size=sc.nextInt();
+		for(int i=0;i<size;i++)
+		{
+		    studList.add(new Student(sc.next(), sc.nextInt()));
+		}
+		
+		Comparator<Student> com = new PercentageComparator();
+		
+		Collections.sort(studList, com);
+		
+		System.out.println("Avg % --> Name");
+		System.out.println("---------------------");
+		for(Student stud:studList) {
+			System.out.println(stud.percentage + " --> " + stud.name);
+		}		
+	}	
 }
 
       
@@ -76,11 +101,13 @@ Register Number: 212222110016
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/3b215d7f-5262-4bda-bd1d-3182099e5bab)
+![image](https://github.com/user-attachments/assets/bc236ed4-2f35-4167-a059-19dd711deadb)
 
 
 ## Result:
-Thus, the class Studentinfo has been successfully created with transient fields that will not be serialized during the serialization process.
+Thus, the program to implement a Java program using Comparator to sort student records based on percentage has been successfully executed.
+
+
 
 
 

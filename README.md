@@ -1,9 +1,16 @@
 
-# EX 9C STRING READER/WRITER
+# EX 9D SERILIZATION/DESERILIZATION
 ## DATE:
 ## AIM:
-To write a Java Program to print the String value "Hi Everybody,Welcome to Java StringReader." Using StringReader
+To write a Java program to perform transient in Student details(name,dept,rollno)
 
+Note:
+
+Student details are stored in a file "student.txt" using Serialization.
+
+Create a class Studentinfo that implements Serializable interface to make its object serialized.
+
+Initialize transient for dept,,rollno
 
 
 
@@ -20,15 +27,15 @@ To write a Java Program to print the String value "Hi Everybody,Welcome to Java 
 
 ## Algorithm
 
-1.Import required classes and define the main class StringReaderExample.
+1.Define a class Studentinfo that implements the Serializable interface.
 
-2.Create a string to be read using StringReader.
+2.Declare data members: name as normal, and dept and rollno as transient.
 
-3.Initialize a StringReader with the input string.
+3.Create a constructor to initialize all fields with user-provided values.
 
-4.Read characters one by one from the StringReader using a while loop.
+4.Assign values to name, dept, and rollno within the constructor.
 
-5.Print each character to the console until the end of the string is reached.
+5.Use transient to skip serialization of dept and rollno during object serialization.
 
 
 
@@ -42,17 +49,19 @@ To write a Java Program to print the String value "Hi Everybody,Welcome to Java 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
- import java.io.StringReader;  
-public class StringReaderExample {  
-    public static void main(String[] args) throws Exception {  
-        String srg = "Hi Everybody,Welcome to Java StringReader.";  
-        StringReader reader = new StringReader(srg);  
-        int k=0;  
-            while((k=reader.read())!=-1){  
-                System.out.print((char)k);  
-            }  
-        }  
-}  
+ class Studentinfo implements Serializable
+{
+    String name;
+   transient String dept;
+    transient int rollno;
+   
+    Studentinfo(String n, String r,int n1)
+    {
+    this.name = n;
+    this.dept = r;
+    this.rollno=n1;
+    }
+}
 
       
 
@@ -67,11 +76,12 @@ public class StringReaderExample {
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/3330e00d-e8a6-4425-a9dc-fc2737153efe)
+![image](https://github.com/user-attachments/assets/3b215d7f-5262-4bda-bd1d-3182099e5bab)
 
 
 ## Result:
-Thus, the program to implement a Java program using StringReader to read and display characters from a string has been successfully executed.
+Thus, the class Studentinfo has been successfully created with transient fields that will not be serialized during the serialization process.
+
 
 
 

@@ -1,8 +1,9 @@
 
-# EX 12D Queue(Priority Queue) and Deque(Array Deque)
+# EX 1E Java program using String Tokenizer
 ## DATE:
 ## AIM:
-To write a java program to display the added elements from the Priority Queue.
+To write a java program using stringTokenizer to break a string based on multiple delimiters. Each character in the constructors delimiter field acts as one delimiter.
+
 
 
 
@@ -21,16 +22,15 @@ To write a java program to display the added elements from the Priority Queue.
 
 ## Algorithm
 
-1.Create a PriorityQueue of integers to store input numbers.
+1.Start the program and create a Scanner object to take user input.
 
-2.Read the number of elements from the user.
+2.Read a string input from the user.
 
-3.Add each input integer to the priority queue using add().
+3.Create a StringTokenizer object with delimiters :, /, and ..
 
-4.Display the contents of the priority queue.
+4.Use a loop to check if more tokens are available.
 
-5.Close the scanner (optional but good practice).
-
+5.Print each token extracted by the tokenizer.
 
 
 
@@ -38,35 +38,31 @@ To write a java program to display the added elements from the Priority Queue.
 
 
 ## Program:
-
+```
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
+```
 
 
 
       
 ```
-import java.util.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
-public class PriorityQueueDemo {
-	
+public class MultiDelimiterTokenizer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-	public static void main(String args[])
-	{
-	
-		PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>();
-        
-	    Scanner sc=new Scanner(System.in);
-	    int size=sc.nextInt();
-	    for(int i=0;i<size;i++){
-	        pQueue.add(sc.nextInt());
-	    }
-	    System.out.println("Display the element of Queue:");
-		System.out.println(pQueue);
+        String input = sc.nextLine();
 
-		
-	}
+        StringTokenizer tokenizer = new StringTokenizer(input, ":/.");
+        while (tokenizer.hasMoreTokens()) {
+            System.out.println(tokenizer.nextToken());
+        }
+    }
 }
+
 
 
             
@@ -83,7 +79,8 @@ public class PriorityQueueDemo {
 
 
 ## Result:
-Thus, the program to implement a Java program using PriorityQueue to insert and display elements has been successfully executed.
+Thus, the program to implement a Java program using StringTokenizer with multiple delimiters to extract and display tokens has been successfully executed.
+
 
 
 

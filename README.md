@@ -1,8 +1,10 @@
 
-# EX 9A Java TreeSet
+# EX 9B Java Map, HashMap and HashTable
 ## DATE:
 ## AIM:
-To write a java program tailset start from the 15(Integer) , use the tailSet() method of SortedSet interface in Java is used to return a view of the portion of this set whose elements are greater than or equal to the parameter fromElement.
+To create a java program to create and add objects  in hashmap interface.
+
+
 
 
 
@@ -14,16 +16,17 @@ To write a java program tailset start from the 15(Integer) , use the tailSet() m
 
 ## Algorithm
 
+1.Import required classes and define the main class Mapp.
 
-1.Import BufferedReader, InputStreamReader, and necessary I/O classes.
+2.Create a HashMap to store integer keys and string values.
 
-2.Read the student’s name, department, and roll number from the console using BufferedReader.
+3.Read the size and map entries (key-value pairs) from the user using Scanner.
 
-3.Create a Student object using the input values through a constructor.
+4.Insert each key-value pair into the HashMap using put().
 
-4.Call the displayDetails() method to show the student’s information.
+5.Iterate over the map using entrySet() and display all key-value pairs.
 
-5.Display the student’s details successfully on the console.
+
 
 
 
@@ -37,31 +40,27 @@ Register Number: 212222110016
 ```
     
 
-import java.util.Scanner;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-public class TailSetExample {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        TreeSet<Integer> treeSet = new TreeSet<>();
-
-      
-        int size = scanner.nextInt();
-
-        for (int i = 0; i < size; i++) {
-            int num = scanner.nextInt();
-            treeSet.add(num);
-        }
-
-        SortedSet<Integer> tailSet = treeSet.tailSet(15);
-
-        System.out.println("Elements greater than or equal to in set are : " + tailSet);
-
-        scanner.close();
-    }
-}
-            
+import java.util.*;  
+public class Mapp{  
+ public static void main(String args[]){ 
+     
+  HashMap<Integer,String> map=new HashMap<Integer,String>(); 
+  Scanner sc=new Scanner(System.in);
+  
+  int size=sc.nextInt();
+  for(int i=0;i<size;i++)
+  {
+  Integer a=sc.nextInt();
+  String b=sc.next();
+  map.put(a,b);  
+  } 
+ 
+  for(Map.Entry m:map.entrySet()){  
+   System.out.println(m.getKey()+" "+m.getValue());  
+  }  
+ }  
+}  
+       
       
  
             
@@ -74,8 +73,9 @@ public class TailSetExample {
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/ff70a51c-ed8f-47e8-875e-6d27371cf460)
+![image](https://github.com/user-attachments/assets/b9f6e829-70ea-4c31-9c76-5b025a12d33e)
 
 
 ## Result:
-Thus, the program to implement a Java program using TreeSet and tailSet() method to display all elements greater than or equal to a specific value has been successfully executed.
+Thus, the program to implement a Java program using HashMap to store and display key-value pairs entered by the user has been successfully executed.
+

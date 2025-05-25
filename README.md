@@ -1,12 +1,9 @@
 
-# EX 9B  BYTE ARRAY I/O
+# EX 9C STRING READER/WRITER
 ## DATE:
 ## AIM:
-To write a java program to write common data into 2 files (F1.txt & F2.txt) using ByteArrayOutputStream
+To write a Java Program to print the String value "Hi Everybody,Welcome to Java StringReader." Using StringReader
 
-Note:
-
-create two files F1.txt and F2.txt  Read the two Integer value from the user, Summation of two integer value should be in the F1.txt and F2.txt
 
 
 
@@ -23,15 +20,15 @@ create two files F1.txt and F2.txt  Read the two Integer value from the user, Su
 
 ## Algorithm
 
-1.Create FileOutputStream objects for two files (F1.txt and F2.txt).
+1.Import required classes and define the main class StringReaderExample.
 
-2.Create a ByteArrayOutputStream to hold output data in memory.
+2.Create a string to be read using StringReader.
 
-3.Read two integers from the user using Scanner and compute their sum.
+3.Initialize a StringReader with the input string.
 
-4.Write the sum to the ByteArrayOutputStream and then to both files using writeTo().
+4.Read characters one by one from the StringReader using a while loop.
 
-5.Close the ByteArrayOutputStream and display a success message.
+5.Print each character to the console until the end of the string is reached.
 
 
 
@@ -45,20 +42,17 @@ create two files F1.txt and F2.txt  Read the two Integer value from the user, Su
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-  FileOutputStream fout=new FileOutputStream("F1.txt");
-          FileOutputStream fout2=new FileOutputStream("F2.txt");
-          ByteArrayOutputStream bout=new ByteArrayOutputStream();
-          Scanner sc=new Scanner(System.in);
-          int num=sc.nextInt();
-          int num1=sc.nextInt();
-          int num2=num+num1;
-          bout.write(num2);
-          bout.writeTo(fout);
-          bout.writeTo(fout2);
-          System.out.println("Success...");
-          bout.close();
-
-    
+ import java.io.StringReader;  
+public class StringReaderExample {  
+    public static void main(String[] args) throws Exception {  
+        String srg = "Hi Everybody,Welcome to Java StringReader.";  
+        StringReader reader = new StringReader(srg);  
+        int k=0;  
+            while((k=reader.read())!=-1){  
+                System.out.print((char)k);  
+            }  
+        }  
+}  
 
       
 
@@ -73,11 +67,12 @@ Register Number: 212222110016
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/3d80c890-6d96-4ee0-a17e-c14a1c066eda)
+![image](https://github.com/user-attachments/assets/3330e00d-e8a6-4425-a9dc-fc2737153efe)
 
 
 ## Result:
-Thus, the program to implement a Java program using ByteArrayOutputStream to write data to multiple files has been successfully executed.
+Thus, the program to implement a Java program using StringReader to read and display characters from a string has been successfully executed.
+
 
 
 

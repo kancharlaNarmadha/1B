@@ -1,8 +1,9 @@
 
-# EX 9B Java Map, HashMap and HashTable
+# EX 9C Java LinkedHashMap
 ## DATE:
 ## AIM:
-To create a java program to create and add objects  in hashmap interface.
+To create a java program to create and add objects and display the map elements after replace key 100 for "java programming" in hashtable concepts not hashmap and then display one more time.
+
 
 
 
@@ -18,13 +19,15 @@ To create a java program to create and add objects  in hashmap interface.
 
 1.Import required classes and define the main class Mapp.
 
-2.Create a HashMap to store integer keys and string values.
+2.Create a LinkedHashMap to store integer keys and string values with insertion order.
 
-3.Read the size and map entries (key-value pairs) from the user using Scanner.
+3.Read the size and key-value pairs from the user and insert them into the map using put().
 
-4.Insert each key-value pair into the HashMap using put().
+4.Display the original entries using entrySet() and getKey()/getValue().
 
-5.Iterate over the map using entrySet() and display all key-value pairs.
+5.Replace the value for key 100 and display the updated map.
+
+
 
 
 
@@ -44,7 +47,7 @@ import java.util.*;
 public class Mapp{  
  public static void main(String args[]){ 
      
-  HashMap<Integer,String> map=new HashMap<Integer,String>(); 
+  LinkedHashMap<Integer,String> map=new LinkedHashMap<>(); 
   Scanner sc=new Scanner(System.in);
   
   int size=sc.nextInt();
@@ -58,6 +61,13 @@ public class Mapp{
   for(Map.Entry m:map.entrySet()){  
    System.out.println(m.getKey()+" "+m.getValue());  
   }  
+ map.replace(100,"welcome to java");
+         
+        System.out.println("HashMap After Replace :");
+                 
+        for(Map.Entry m:map.entrySet()){  
+   System.out.println(m.getKey()+" "+m.getValue());  
+  } 
  }  
 }  
        
@@ -73,9 +83,10 @@ public class Mapp{
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/b9f6e829-70ea-4c31-9c76-5b025a12d33e)
+![image](https://github.com/user-attachments/assets/fd549754-ea00-46a8-8d32-7ea5f3535176)
 
 
 ## Result:
-Thus, the program to implement a Java program using HashMap to store and display key-value pairs entered by the user has been successfully executed.
+Thus, the program to implement a Java program using LinkedHashMap to store, update, and display key-value pairs with insertion order has been successfully executed.
+
 

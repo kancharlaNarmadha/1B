@@ -1,9 +1,10 @@
 
-# EX 10D Java HashSet & LinkedHashSet
+# EX 9A  I/O-STREAM
 ## DATE:
 ## AIM:
-To write a java program use hashset concepts in collection and add the elements to the hashset and then display the elements iterate(use while)and ignore the duplicate elements in hashset.
+To write a Java Program to read a boolean Value from a file "OutputFile.txt" using DataInputStream . Use Predefined Function read for reading
 
+Note Initialize DataInputStream Object name as "di"
 
 
 
@@ -20,15 +21,15 @@ To write a java program use hashset concepts in collection and add the elements 
 
 ## Algorithm
 
-1.Import required classes and define the main class HashSetDemo.
+1.Create a FileInputStream to read from the file OutputFile.txt.
 
-2.Create a HashSet to store unique string elements.
+2.Wrap the input stream with DataInputStream to enable reading primitive data types.
 
-3.Read n strings from the user and add them to the set using add().
+3.Read a boolean value from the file using readBoolean().
 
-4.Create an Iterator to traverse the HashSet.
+4.Print the boolean value to the console.
 
-5.Use a while loop with the iterator to display each element in the set.
+5.Close both FileInputStream and DataInputStream to release resources.
 
 
 
@@ -42,30 +43,15 @@ To write a java program use hashset concepts in collection and add the elements 
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-import java.util.*;
-
-public class HashSetDemo{
-
-public static void main(String args[]){
-
-HashSet <String> hs = new HashSet <String>();
-Scanner sc=new Scanner(System.in);
-int n=sc.nextInt();
-for(int i=0;i<n;i++)
-{
+ FileInputStream input = new FileInputStream("OutputFile.txt");  
+    DataInputStream di = new DataInputStream(input);  
+ 
+ boolean data =di.readBoolean();
+   
+      System.out.println(data);  
+    input.close();
+    di.close();
     
-hs.add(sc.next());
-
-}
- Iterator<String> i=hs.iterator();  
- while(i.hasNext())  
- {  
-    System.out.println(i.next());  
- }  
-
-}
-}
-
 
       
 
@@ -80,11 +66,12 @@ hs.add(sc.next());
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/04367cd4-921e-4ed0-ba34-b1aa33eded3e)
+![image](https://github.com/user-attachments/assets/4b663566-dcce-4671-a4d0-48e7191a34a5)
 
 
 ## Result:
-Thus, the program to implement a Java program using HashSet and Iterator to store and display unique elements has been successfully executed.
+Thus, the program to implement a Java program using DataInputStream to read a boolean value from a file has been successfully executed.
+
 
 
 

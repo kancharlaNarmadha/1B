@@ -1,52 +1,61 @@
-# EX 1B Merge Sort
+# EX 1C Quick Sort
 ## DATE:
 ## AIM:
-To write a python program to sort the first half of the list using merge sort.
+To write a python program to implement quick sort using tha last element as pivot on the list of float values.
 
 ## Algorithm
-1. If the array has more than one element, split it into two halves.
-2. Recursively apply merge sort on both halves.
-3. Compare elements of both halves and merge them into a sorted array.
-4. Copy any remaining elements from the left or right half.
-5. Return the fully sorted array.
+1. Read n and take n floating-point inputs into an array arr.
+2. Define a partition function to place the pivot in its correct position.
+3. Define a recursive quickSort function using the partition logic.
+4. Call quickSort(arr, 0, n - 1) to sort the entire array.
+5. Print the sorted elements of arr. 
 
 ## Program:
 ```
-Program to implement Merge Sort
+Program to implement implement quick sort using the last element as pivot on the list of float values.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
-
 ```
 ```python
-n = int(input())  
-S = [float(input()) for _ in range(n)]  
-
-print("Given array is")
-print(*S)
-
-half=n//2
-
-if S[half]>S[half+1]:
-    small=min(S)
-    S.remove(small)
-    sort_s=[]
-    sort_s.append(small)
+def quickSort(arr, low, high):
+    if low >= high:
+        return
     
-    for i in range(len(S)):
-        sort_s.append(S[i])
-    print("\nSorted array is")
-    print(*sort_s)
+    pivot = arr[high] 
+    i = low - 1  
+    
+    for j in range(low, high):
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]  
+    
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]  
+    pi = i + 1  
+    
+    quickSort(arr, low, pi - 1)  
+    quickSort(arr, pi + 1, high) 
 
-else:
-    print("\nSorted array is")
-    print("3.2 1.2 5.4 6.5 7.8 9.4")
+
+n = int(input())  
+arr = [int(input()) for _ in range(n)]  
+
+
+quickSort(arr, 0, n - 1)
+
+
+print("Sorted array is:")
+for num in arr:
+    print(num)
+
 
 ```
 
+
+
 ## Output:
-![image](https://github.com/user-attachments/assets/d136c330-4704-44dc-bf55-2fcf97981437)
+![image](https://github.com/user-attachments/assets/1da761d1-4729-4b6e-bc9e-bd40c156804d)
 
 
 
 ## Result:
-The program successfully sorts the first half of the given array using merge sort. where only the first half is sorted, and the second half remains unchanged.
+The program successfully sorts the input array using the QuickSort algorithm, arranging the elements in ascending order.

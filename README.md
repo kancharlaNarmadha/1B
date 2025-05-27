@@ -1,23 +1,24 @@
 
-# EX 4A DYNAMIC PROGRAMMING - 1
+# EX 4B DYNAMIC PROGRAMMING – 2
 ## DATE:
 ## AIM:
-To find longest common subsequence using Dynamic Programming.
+To find the longest string (or strings) that is a substring (or are substrings) of two strings..
 
 
 
 ## Algorithm
-1.Create a 2D table dp where dp[i][j] will store the length of the LCS of the first i characters of string X and the first j characters of string Y. 
-2.Initialize the first row and first column with 0.
-3.Traverse the strings X and Y:
-   If X[i-1] == Y[j-1], then dp[i][j] = dp[i-1][j-1] + 1 (i.e., extend the subsequence by 1).
-   Otherwise, dp[i][j] = max(dp[i-1][j], dp[i][j-1]) (i.e., take the longer subsequence without including the current character of X or Y).
-4.After filling the table, backtrack from dp[m][n] to construct the LCS string by comparing characters and moving diagonally when they match.
-5.The result is stored in the last cell of the table, dp[m][n], representing the length of the LCS.  
+1.Create a 2D table lookup of size (m+1) x (n+1), where m and n are the lengths of strings X and Y, respectively.
+2.Initialize maxLength as 0 and endingIndex as m to store the end index of the longest common substring.
+3.Loop through each character of both strings (X[i-1] and Y[j-1]):
+4.If the characters match, update lookup[i][j] = lookup[i-1][j-1] + 1.
+5.If the characters don't match, set lookup[i][j] = 0.
+6.Track the maximum length found and update maxLength and endingIndex accordingly.
+7.The longest common substring is the substring of X that starts from endingIndex - maxLength and ends at endingIndex.
+
 
 ## Program:
 ```
-Program to implement the longest common subsequence using Dynamic Programming
+Program to implement the longest common substring problem
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
@@ -26,45 +27,38 @@ def lcs(X, Y):
     m = len(X)
     n = len(Y)
     
-    # Create a 2D array to store lengths of LCS
+    # Create a 2D DP array with 0s
     dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    max_length = 0  # To store the length of the longest common substring
+    end_pos = 0  # To store the ending position of the longest common substring in X
 
-    # Build the dp table in bottom-up fashion
-    for i in range(m):
-        for j in range(n):
-            if X[i] == Y[j]:
-                dp[i+1][j+1] = dp[i][j] + 1
+    # Fill the DP table
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if X[i - 1] == Y[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+                if dp[i][j] > max_length:
+                    max_length = dp[i][j]
+                    end_pos = i  # Update the ending position of the substring
             else:
-                dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])
+                dp[i][j] = 0
 
-    # Reconstruct LCS from the table
-    lcs_result = []
-    i, j = m, n
-    while i > 0 and j > 0:
-        if X[i-1] == Y[j-1]:
-            lcs_result.append(X[i-1])
-            i -= 1
-            j -= 1
-        elif dp[i-1][j] > dp[i][j-1]:
-            i -= 1
-        else:
-            j -= 1
+    # The longest common substring is X[end_pos - max_length : end_pos]
+    return X[end_pos - max_length : end_pos], max_length
 
-    # The LCS is constructed backwards
-    return ''.join(reversed(lcs_result))
-
-# Example usage
+# Example usage:
 X = input()
 Y = input()
-result = lcs(X, Y)
-print(result)
+substring, length = lcs(X, Y)
+print(f"The longest common substring is {substring}")
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4a9453e1-949f-4547-9303-240894a7d0a4)
+![image](https://github.com/user-attachments/assets/6ca1b91a-8095-4c26-8555-181a9f4f99f2)
 
 
 
 ## Result:
-Thus the program was executed successfully for computing the length of longest common subsequence.
+Thus the program was executed successfully for finding the longest common substring .

@@ -1,95 +1,41 @@
-
-# EX 1E Java program using String Tokenizer
+# EX 1A Reverse a String
 ## DATE:
 ## AIM:
-To write a java program using stringTokenizer to break a string based on multiple delimiters. Each character in the constructors delimiter field acts as one delimiter.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+To write a program to create a recursive function to reverse a string.
 
 ## Algorithm
+1.Take input string s from the user.
 
-1.Start the program and create a Scanner object to take user input.
+2.If the length of s is 0, return s.
 
-2.Read a string input from the user.
+3.Otherwise, get the last character of the string s[-1].
 
-3.Create a StringTokenizer object with delimiters :, /, and ..
+4.Recursively call the function on the substring excluding the last character s[:-1].
 
-4.Use a loop to check if more tokens are available.
-
-5.Print each token extracted by the tokenizer.
-
-
-
-
-
+5.Concatenate the last character with the result of the recursive call and return it.
 
 ## Program:
 ```
+Program to implement Reverse a String
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
+```python
 
+def reverse_string(s):
+    if len(s) == 0:  
+        return s
+    else:
+        return s[-1] + reverse_string(s[:-1]) 
 
-
-      
-```
-import java.util.Scanner;
-import java.util.StringTokenizer;
-
-public class MultiDelimiterTokenizer {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        String input = sc.nextLine();
-
-        StringTokenizer tokenizer = new StringTokenizer(input, ":/.");
-        while (tokenizer.hasMoreTokens()) {
-            System.out.println(tokenizer.nextToken());
-        }
-    }
-}
-
-
-
-            
-      
-               
-
-
-    
+input_string = input()
+reversed_string = reverse_string(input_string)
+print(reversed_string)
 ```
 
 ## Output:
-
-![image](https://github.com/user-attachments/assets/47be3d5c-ce59-4892-b94f-0339571e17e9)
+![image](https://github.com/user-attachments/assets/05c7cd04-9766-4b86-9c3f-a12b95331e48)
 
 
 ## Result:
-Thus, the program to implement a Java program using StringTokenizer with multiple delimiters to extract and display tokens has been successfully executed.
-
-
-
-
-
-
-
-
-
-
-
-
-
+The program successfully reverses the input string using recursion. When the user provides an input string, the output displays the reversed version of the string

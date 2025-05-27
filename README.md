@@ -1,48 +1,47 @@
-# EX 4C DYNAMIC PROGRAMMING – 3
+
+# EX 4D DYNAMIC PROGRAMMING – 4
 ## DATE:
 ## AIM:
-Given a sequence, find the length of the longest palindromic subsequence in it.
-
-
-
-
+To find the minimum number of operations to convert str1 to str2 using Naive recursive method.
 
 ## Algorithm
-1. Take the input string s for which the longest palindromic subsequence is to be found.
-2. Define a recursive function lps(s, i, j) to compute the LPS length between indices i and j.
-3. If i > j, return 0 since it's an invalid substring.
-4. If i == j, return 1 because a single character is a palindrome of length 1.
-5. If s[i] == s[j], return 2 + lps(s, i + 1, j - 1) as matching ends extend the palindrome.
-6. If s[i] != s[j], return the maximum of lps(s, i + 1, j) and lps(s, i, j - 1) to explore other subsequences. 
+1. If the first string is empty, return the length of the second string (insert all characters).
+2. If the second string is empty, return the length of the first string (delete all characters).
+3. If the last characters of both strings match, move to the next characters by recursively calling the function for substrings excluding the last character.
+4. If the last characters don’t match, recursively compute the edit distance considering:
+5. Deleting the last character from str1.
+6. Inserting the last character into str1.
+7. Substituting the last character in str1 with the last character in str2.
+8. The minimum of the three operations is chosen, adding 1 to account for the operation itself.  
 
 ## Program:
 ```
-Program to implement to find the length of the longest palindromic subsequence in it
-Developed by: Kancharla narmadha
+Program to implement to find the minimum number of operations to convert str1 to str2 using Naive recursive method
+Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 
 ```py
-def lps(s, i, j):
-    if i > j:
-        return 0
-    if i == j:
-        return 1
-    if s[i] == s[j]:
-        return 2 + lps(s, i + 1, j - 1)
-    else:
-        return max(lps(s, i + 1, j), lps(s, i, j - 1))
-
-s = input()
-print("The length of the LPS is", lps(s, 0, len(s) - 1))
-
+def ed(x,y,m,n):
+    if m==0:
+        return n
+    if n==0:
+        return m
+    if x[m-1]==y[n-1]:
+        return ed(x,y,m-1,n-1)
+    return 1+min(ed(x,y,m-1,n-1),ed(x,y,m,n-1),ed(x,y,m-1,n))
+    
+    
+x=input()
+y=input()
+print("Edit Distance",ed(x,y,len(x),len(y)))
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/4ecb6ca0-1dc4-4d23-9541-5128d3d24b51)
+![image](https://github.com/user-attachments/assets/5fb0bc4f-7a36-4e8b-a386-e62847a6ad42)
 
 
 
 ## Result:
-Thus the program was executed successfully for finding the length of longest palindromic string.
+Thus the program was executed successfully for finding edit distance between two strings.

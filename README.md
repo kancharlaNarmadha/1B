@@ -1,51 +1,53 @@
-# EX 5C Kadane's Algorithm
+
+# EX 5D Minimum Jump to Reach End Array
 ## DATE:
 ## AIM:
-To write a python program to find the maximum contiguous subarray.
+To write a python program for finding the minimum number of jumps needed to reach end of the array using Dynamic Programming.
 
 
 ## Algorithm
-1. Start by initializing a variable max_sum to 0 to keep track of the maximum subarray sum found so far.
-2. Loop through each index i from 0 to n-1 as the starting point of the subarray.
-3. For each i, initialize a variable current_sum to 0 to store the sum of the current subarray.
-4. Loop through each index j from i to n-1 to consider every subarray starting from index i.
-5. Add the current element a[j] to current_sum to extend the subarray.
-6. If current_sum is greater than max_sum, update max_sum; if current_sum becomes negative, reset it to 0 to start fresh.
+1. If the array has 1 or fewer elements, return 0 as no jumps are needed.
+2. Create a dp array of size n and initialize all values to infinity, except dp[0] = 0 (start position).
+3. Loop over each index i from 1 to n-1 to find the minimum jumps needed to reach i.
+4. For each i, loop over all previous indices j from 0 to i-1.
+5. If index j can reach index i (i.e., j + arr[j] >= i), update dp[i] = min(dp[i], dp[j] + 1).
+6. Return dp[n-1] as the minimum number of jumps required to reach the end of the array.
 
 ## Program:
 ```
-To implement the program to find the maximum contiguous subarray.
+To implement the program to finding the minimum number of jumps needed to reach end of the array.
 Developed by: Kancharla Narmadha
-Register Number: 212222110016 
+Register Number: 212222110016
 ```
 ```py
-def maxSubArraySum(a,size):
-    maxx=0
-    # print(size)
-    for i in range(size):
-        sum=0
-        for j in range(i,size):
-            sum+=a[j]
-            # maxx=max(maxx,sum)
-            if sum>maxx:
-                maxx=sum
-            if sum<0:
-                sum=0
-    return maxx
+def minJumps(arr, n):
+    if n<=1:
+        return 0
+    dp=[float('inf')]*n
+    dp[0]=0
     
-n=int(input())  
-a =[] #[-2, -3, 4, -1, -2, 1, 5, -3]
+    for i in range(1,n):
+        for j in range(i):
+            if j+arr[j]>=i:
+                dp[i]=min(dp[i],dp[j]+1)
+                break
+    return dp[-1]
+    
+    
+    
+arr = []
+n = int(input()) #len(arr)
 for i in range(n):
-    a.append(int(input()))
-  
-print("Maximum contiguous sum is", maxSubArraySum(a,n))
-
+    arr.append(int(input()))
+print('Minimum number of jumps to reach','end is', minJumps(arr,n))
+ 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/aebe05bd-5735-432c-91b2-f955266b4c9a)
+![image](https://github.com/user-attachments/assets/18333c5d-f33b-4703-aea7-a155e0892755)
+
 
 
 
 ## Result:
-Thus the program was executed successfully for finding the maximum contiguous sum of subarray..
+Thus the program was executed successfully for finding the minimum number of jumps to reach end.

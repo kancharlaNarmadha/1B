@@ -1,56 +1,51 @@
-# EX 5A Minimum Cost Path
+# EX 5B Coin Change Problem
 ## DATE:
 ## AIM:
-To write a Python program using A Naive recursive implementation of Minimum Cost Path Problem.
-
-
+To compute the fewest number of coins that we need to make up the amount given.
 
 
 ## Algorithm
-1. Base Case:If either row (m) or column (n) is out of bounds (i.e., less than 0), return a very large value (sys.maxsize) to signify an invalid path.
-2. If both m == 0 and n == 0, return the cost of the starting cell cost[m][n].
-3. Recursive Case:For every cell (m, n), calculate the minimum cost by considering three possible moves:
-4. Move from the top-left diagonal (m-1, n-1).
-5. Move from the top (m-1, n).
-6. Move from the left (m, n-1).
-7. For each direction, recursively compute the cost and add the current cell's cost.
-8. Return the Minimum Cost:Recursively return the minimum of the three paths, adding the cost of the current cell.
-9. Final Output:Call the recursive function starting from the bottom-right corner of the matrix to find the minimum cost.
+1. Initialization:Create a dynamic programming (DP) array dp[] of size amount + 1, where dp[i] represents the minimum number of coins needed to make the amount i.
+2. Initialize dp[0] = 0 since no coins are needed to make the amount 0, and set all other dp[i] to infinity (float('inf')), indicating that the amount i is not yet achievable.
+3. Filling the DP Array:For each coin in the list of available coins, iterate over all amounts from the coin's value up to the target amount.
+4. Update the DP array by setting dp[i] to the minimum of its current value and dp[i - coin] + 1 (i.e., using one more coin of the current denomination).
+5. Result:After processing all coins, if dp[amount] is still infinity, return -1, indicating that it's not possible to form the amount with the given coins.
+6. Otherwise, return dp[amount], which gives the minimum number of coins required.
 
 ## Program:
 ```
-A program to implement to find the Minimum Cost Path Problem using a  Naive recursive Approach.
-Developed by: Kancharla Naarmadha
+Create a python function to compute the fewest number of coins that we need to make up the amount given.
+Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```py
-R = int(input())
-C = int(input())
-import sys
-def minCost(cost, m, n):
-    ###########  Add your Code Here ##################
-    
-        if(n<0 or m<0):
-            return sys.maxsize
-        elif(m==0 and n==0):
-            return cost[m][n]
-        else:
-            return cost[m][n] + min(minCost(cost,m-1,n-1),
-                                    minCost(cost,m-1,n),
-                                    minCost(cost,m,n-1))
-    
-    
-cost= [ [1, 2, 3],
-        [4, 8, 2],
-        [1, 5, 3] ]
-print(minCost(cost, R-1, C-1))
+class Solution(object):
+   def coinChange(self, coins, amount):
+       ####################      Add your Code Here ###########
+        dp = [float('inf')] * (amount + 1)
+        dp[0]=0
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+        return dp[amount] if dp[amount]!=float('inf') else -1
+      
+      
+ob1 = Solution()
+n=int(input())
+s=[]
+amt=int(input())
+for i in range(n):
+    s.append(int(input()))
+
+
+print(ob1.coinChange(s,amt))
 
 ```
 
-
 ## Output:
-![image](https://github.com/user-attachments/assets/abcac137-16eb-4aef-87cd-2d703ede5b22)
+![image](https://github.com/user-attachments/assets/9d0b666f-498e-4784-99ff-36b168a86610)
+
 
 
 ## Result:
-Thus the above program was executed successfully for finding the minimum cost.
+Thus the program was executed successfully for finding the minimum number of coins required to make amount.

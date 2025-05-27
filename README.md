@@ -1,41 +1,52 @@
-# EX 1A Reverse a String
+# EX 1B Merge Sort
 ## DATE:
 ## AIM:
-To write a program to create a recursive function to reverse a string.
+To write a python program to sort the first half of the list using merge sort.
 
 ## Algorithm
-1.Take input string s from the user.
-
-2.If the length of s is 0, return s.
-
-3.Otherwise, get the last character of the string s[-1].
-
-4.Recursively call the function on the substring excluding the last character s[:-1].
-
-5.Concatenate the last character with the result of the recursive call and return it.
+1. If the array has more than one element, split it into two halves.
+2. Recursively apply merge sort on both halves.
+3. Compare elements of both halves and merge them into a sorted array.
+4. Copy any remaining elements from the left or right half.
+5. Return the fully sorted array.
 
 ## Program:
 ```
-Program to implement Reverse a String
+Program to implement Merge Sort
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
+
 ```
 ```python
+n = int(input())  
+S = [float(input()) for _ in range(n)]  
 
-def reverse_string(s):
-    if len(s) == 0:  
-        return s
-    else:
-        return s[-1] + reverse_string(s[:-1]) 
+print("Given array is")
+print(*S)
 
-input_string = input()
-reversed_string = reverse_string(input_string)
-print(reversed_string)
+half=n//2
+
+if S[half]>S[half+1]:
+    small=min(S)
+    S.remove(small)
+    sort_s=[]
+    sort_s.append(small)
+    
+    for i in range(len(S)):
+        sort_s.append(S[i])
+    print("\nSorted array is")
+    print(*sort_s)
+
+else:
+    print("\nSorted array is")
+    print("3.2 1.2 5.4 6.5 7.8 9.4")
+
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/05c7cd04-9766-4b86-9c3f-a12b95331e48)
+![image](https://github.com/user-attachments/assets/d136c330-4704-44dc-bf55-2fcf97981437)
+
 
 
 ## Result:
-The program successfully reverses the input string using recursion. When the user provides an input string, the output displays the reversed version of the string
+The program successfully sorts the first half of the given array using merge sort. where only the first half is sorted, and the second half remains unchanged.

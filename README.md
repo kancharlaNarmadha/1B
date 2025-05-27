@@ -1,81 +1,55 @@
-# EX 3C Sudoku Solver
+# EX 3D Pattern Matching
 ## DATE:
 ## AIM:
-To write a python program to find the solution of sudoku puzzle using Backtracking.
+To write a python program to implement pattern matching on the given string using Brute Force algorithm.
+
 
 
 ## Algorithm
-1. Find the first empty cell (cell with 0) in the Sudoku board.
-2. Try placing numbers 1 to 9 in that empty cell.
-3. For each number, check if it is safe (valid) to place by row, column, and 3×3 box rules.
-4. If safe, place the number and recursively attempt to fill the next empty cell.
-5. If the board is completely filled without conflicts, print the solution. 
+1. Start checking each letter of s1 with the first letter of s
+2. If letters match, keep checking the next letters.
+3. If letters don't match, move one step forward in s1 and restart checking.
+4. If all letters of s2 match, return the starting position.
+5. If no match is found till the end, return 0.  
 
 ## Program:
 ```
-Program to implement to to find the solution of sudoku puzzle using Backtracking.
+Program to implement the Pattern Matching.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```python
-board = [
-    [0, 0, 0, 8, 0, 0, 4, 0, 3],
-    [2, 0, 0, 0, 0, 4, 8, 9, 0],
-    [0, 9, 0, 0, 0, 0, 0, 0, 2],
-    [0, 0, 0, 0, 2, 9, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 7, 0, 6, 5, 0, 0, 0, 0],
-    [9, 0, 0, 0, 0, 0, 0, 8, 0],
-    [0, 6, 2, 7, 0, 0, 0, 0, 1],
-    [4, 0, 3, 0, 0, 6, 0, 0, 0]
-]
-
-def printBoard(board):
-    for i in range(0, 9):
-        for j in range(0, 9):
-            print(board[i][j], end=" ")
-        print()
-
-def isPossible(board, row, col, val):
-    for j in range(0, 9):
-        if board[row][j] == val:
-            return False
-
-    for i in range(0, 9):
-        if board[i][col] == val:
-            return False
-
-    startRow = (row // 3) * 3
-    startCol = (col // 3) * 3
-    for i in range(0, 3):
-        for j in range(0, 3):
-            if board[startRow+i][startCol+j] == val:
-                return False
-    return True
-
-def solve():
-    #####################  Add your code here #########################
-    for i in range(0, 9):
-        for j in range(0, 9):
-            if board[i][j] == 0:
-                for val in range(1, 10):
-                    if isPossible(board, i, j, val):
-                        board[i][j] = val
-                        if solve():  
-                            return True
-                        board[i][j] = 0  
-                return False
-    return True
+def BF(s1,s2):
+##############  Add your code here #############
+    i=0
+    j=0
     
-solve()
-printBoard(board)
+    while(i<len(s1) and j<len(s2)):
+        if(s1[i]==s2[j]):
+            i+=1
+            j+=1
+        else:
+            i=i-j+1
+            j=0
+            
+    if(j>=len(s2)):
+        return i-len(s2)
+    else:
+        return -1
+        
+        
+if __name__ == "__main__":
+    a1=input() 
+    a2=input() 
+    b=BF(a1,a2)
+    print(b)
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/b12f5fb7-18a2-4345-9caf-c5743b51abef)
+![image](https://github.com/user-attachments/assets/b34263ad-ed31-4ecc-845e-4f872d15794d)
 
 
 
 ## Result:
-The Sudoku solver program executed successfully and found the solution for the given puzzle.
+The brute force substring search program executed successfully and returned the starting index of the match or 0 if no match was found.

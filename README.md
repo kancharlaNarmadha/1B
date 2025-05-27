@@ -1,61 +1,40 @@
-# EX 1C Quick Sort
+# EX 1D Linear search
 ## DATE:
 ## AIM:
-To write a python program to implement quick sort using tha last element as pivot on the list of float values.
+To write a python program for a search function with parameter list name and the value to be searched using string values.
+
+
 
 ## Algorithm
-1. Read n and take n floating-point inputs into an array arr.
-2. Define a partition function to place the pivot in its correct position.
-3. Define a recursive quickSort function using the partition logic.
-4. Call quickSort(arr, 0, n - 1) to sort the entire array.
-5. Print the sorted elements of arr. 
-
+1. Check if the target exists: See if the input n is present within the List.
+2. Report if found: If n is in List, the result is "Found".
+3. Report if not found: Otherwise, if n is not in List, the result is "Not Found".
+4. Get list length: Read the number of elements for the List.
+5. Create and populate list: Take that many inputs and store them in the List.
+6. Get search target: Read the value to be searched for (n).
+7. Perform and display search: Call the search function and print its output.
 ## Program:
 ```
-Program to implement implement quick sort using the last element as pivot on the list of float values.
-Developed by: Kancharla Narmadha
+Program to implement a search function with parameter list name and the value to be searched using string values.
+Developed by: Kancharla Narmadha 
 Register Number: 212222110016
 ```
 ```python
-def quickSort(arr, low, high):
-    if low >= high:
-        return
+def search(List,n):
+    if n in List:
+        return "Found"
+    return "Not Found"
     
-    pivot = arr[high] 
-    i = low - 1  
-    
-    for j in range(low, high):
-        if arr[j] < pivot:
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]  
-    
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]  
-    pi = i + 1  
-    
-    quickSort(arr, low, pi - 1)  
-    quickSort(arr, pi + 1, high) 
-
-
-n = int(input())  
-arr = [int(input()) for _ in range(n)]  
-
-
-quickSort(arr, 0, n - 1)
-
-
-print("Sorted array is:")
-for num in arr:
-    print(num)
-
-
+length=int(input())
+List=[input() for _ in range(length)]
+n=input()
+print(search(List,n))
 ```
 
-
-
 ## Output:
-![image](https://github.com/user-attachments/assets/1da761d1-4729-4b6e-bc9e-bd40c156804d)
+![image](https://github.com/user-attachments/assets/460b44fe-d941-43b9-9c56-7c63bea03b43)
 
 
 
 ## Result:
-The program successfully sorts the input array using the QuickSort algorithm, arranging the elements in ascending order.
+The program was executed successfully, and it correctly checks if the input element is present in the list, printing "Found" if the element exists or "Not Found" if it does not.

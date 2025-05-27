@@ -1,66 +1,80 @@
-# EX 2D BACKTRACKING - GRAPH COLORING PROBLEM
+
+# EX 3A Knight Tour & Count Path
 ## DATE:
 ## AIM:
-To solve the Graph Coloring Problem using backtracking, assigning colors to the vertices of a graph such that no two adjacent vertices share the same color while minimizing the number of colors used.
-
+To write a python program to find minimum steps to reach to specific cell in minimum moves by knight
 
 
 ## Algorithm
-1. Create a graph using an adjacency matrix for V vertices.
-2. Initialize a color array with 0 (unassigned) for all vertices.
-3. Use backtracking to assign colors (1 to m) to each vertex.
-4. Ensure no two adjacent vertices have the same color using is_safe().
-5. Print the color assignment if successful; else, print "Solution does not exist".
+1. Use Breadth-First Search (BFS) starting from the knight’s position.  
+2. Enqueue the starting position with distance 0 and mark it as visited.
+3. At each step, dequeue a cell and check if it is the target position.
+4. If not, move the knight in all 8 possible moves and enqueue valid, unvisited cells with dist + 1.
+5. Repeat until the target is reached, and return the number of steps (distance).
 
 ## Program:
 ```
-Program to implement Graph Coloring Problem using backtracking.
+Program to implement to find minimum steps to reach to specific cell in minimum moves by knight.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```python
-class Graph:
-    def __init__(self, vertices):
-        self.V = vertices  # Number of vertices
-        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]  # Adjacency matrix
+from collections import deque
 
-    def isSafe(self, color, vertex, c):
-        for i in range(self.V):
-            if self.graph[vertex][i] == 1 and color[i] == c:
-                return False
+class cell:
+     
+    def __init__(self, x = 0, y = 0, dist = 0):
+        self.x = x
+        self.y = y
+        self.dist = dist
+
+def isInside(x, y, N):
+    if (x >= 1 and x <= N and
+        y >= 1 and y <= N):
         return True
-
-    def graphColouringUtil(self, m, color, vertex):
-        # Base case: If all vertices are assigned a color
-        if vertex == self.V:
-            return True
-
-        # Try different colors for vertex
-        for c in range(1, m + 1):
-            if self.isSafe(color, vertex, c):
-                color[vertex] = c  # Assign color c to vertex
-                # Recur to assign colors to the rest of the vertices
-                if self.graphColouringUtil(m, color, vertex + 1):
-                    return True
-                color[vertex] = 0  # Backtrack if coloring doesn't lead to a solution
-
-        return False
-
-    def graphColouring(self, m):
-        color = [0] * self.V  # Initialize all vertices as uncolored
-
-        if not self.graphColouringUtil(m, color, 0):
-            print("Solution does not exist")
-        else:
-            # Print color assignment without list brackets
-            print(f"Solution exist and Following are the assigned colours:\n{' '.join(map(str, color))}")
+    return False
+def minStepToReachTarget(knightpos,
+                         targetpos, N):
+     
+    # add your code here
+    dx = [2, 2, -2, -2, 1, 1, -1, -1]
+    dy = [1, -1, 1, -1, 2, -2, 2, -2]
+    
+    queue = deque()
+    queue.append(cell(knightpos[0], knightpos[1], 0))
+    
+    visited = [[False for _ in range(N + 1)] for _ in range(N + 1)]
+    visited[knightpos[0]][knightpos[1]] = True
+    
+    while queue:
+        t = queue.popleft()
+        
+        if t.x == targetpos[0] and t.y == targetpos[1]:
+            return t.dist
+        
+        for i in range(8):
+            x = t.x + dx[i]
+            y = t.y + dy[i]
+            
+            if isInside(x, y, N) and not visited[x][y]:
+                visited[x][y] = True
+                queue.append(cell(x, y, t.dist + 1))
+    
+    return -1
+    
+if __name__=='__main__':
+    N = 30
+    knightpos = [1, 1]
+    targetpos = [30, 30]
+    print(minStepToReachTarget(knightpos,
+                               targetpos, N))
 
 ```
 
 ## Output:
+![image](https://github.com/user-attachments/assets/8c25c97d-3d19-447c-9002-330e3eba2716)
 
-![image](https://github.com/user-attachments/assets/56e5a09f-fd10-4ea8-bbf9-f659d2fa111b)
 
 
 ## Result:
-The Graph Coloring program executed successfully, and the colors were assigned to the vertices such that no two adjacent vertices share the same color.
+The program executed successfully, and the minimum number of steps for the knight to reach the target was calculated.

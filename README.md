@@ -1,67 +1,49 @@
-
-# EX 6C TRAVELLING SALES MAN PROBLEM
+# EX 6D BRUTE FORCE ALGORITHM
 ## DATE:
 ## AIM:
-To Solve Travelling Sales man Problem for the following graph.
+To write a python program using brute force method of searching for the given substring in the main string.
 
-![image](https://github.com/user-attachments/assets/653921a4-3d7b-4691-9b41-735e80f7af0b)
 
 
 
 ## Algorithm
-1. Define a graph with distances between V cities and select a starting city s.
-2. Generate all permutations of the other cities excluding s.
-3. For each permutation, calculate total route cost from s through the permutation and back to s.
-4. Track and update the minimum route cost found.
-5. Return the minimum cost as the shortest route covering all cities once.
-6. Note: This brute-force method is feasible only for small V due to factorial complexity. 
+1. Take the main string and the substring as input.
+2. Find the lengths of both strings.
+3. Loop through the main string from index 0 to len(main) - len(substring).
+4. At each position, extract a slice equal to the length of the substring.
+5. Compare the slice with the substring; if they match, print the starting index.
+6. Continue until all possible positions are checked.
 
 ## Program:
 ```
-To implement the program for TSP.
-Developed by: Kancharla narmadha
+To implement the program using brute force method of searching for the given substring in the main string.
+Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```py
-from sys import maxsize
-from itertools import permutations
-V = 4
- 
+def match(string,sub):
+    l = len(string)
+    ls = len(sub)
+    # start = sub[0]
+    for i in range(l-ls+1):
+        j=0
+        while j<ls and string[i+j]==sub[j]:
+            j+=1
+        if j==ls:
+            print("Found at index",i)
+    return -1
 
-def travellingSalesmanProblem(graph, s):
-    vetex=[]
-    cur=0
-    minpath=maxsize
-    for i in range(V):
-        if i!=s:
-            vetex.append(i)
-    # k=s
-    nextper=permutations(vetex)
-    for i in nextper:
-        cur=0
-        k=s
-        for j in i:
-            cur+=graph[k][j]
-            k=j
-        cur+=graph[k][s]
-        minpath=min(minpath,cur)
-    return minpath
-        
-   
- 
- 
+    ########### Add your code here #######
 
-if __name__ == "__main__":
- 
-    graph = [[0, 10, 15, 20], [10, 0, 35, 25],[15, 35, 0, 30], [20, 25, 30, 0]]
-    s = 0
-    print(travellingSalesmanProblem(graph, s))
+str1=input()
+str2=input()
+
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/cfd30eae-dfbd-4a54-9f32-d586a2f1f7e9)
+![image](https://github.com/user-attachments/assets/cf982d3d-502d-400c-a9eb-7806f92d73a0)
 
 
 
 ## Result:
-Thus the program was executed successfully for finding the minimum cost to vist all cities.
+Thus the above program was executed successfully for searching the substring at respective index.

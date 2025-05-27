@@ -1,75 +1,81 @@
-# EX 3B Hamiltonian Circuit Problem
+# EX 3C Sudoku Solver
 ## DATE:
 ## AIM:
-To write a python program to check whether Hamiltonian path exits in the given graph.
+To write a python program to find the solution of sudoku puzzle using Backtracking.
+
 
 ## Algorithm
-1. Start from each vertex and mark it as visited.
-2. Try visiting all other vertices one by one using edges.
-3. Use dynamic programming to remember visited sets and paths.
-4. If you can visit all vertices exactly once, a Hamiltonian path exists.
-5. If no such path is found after checking all options, return "NO".
+1. Find the first empty cell (cell with 0) in the Sudoku board.
+2. Try placing numbers 1 to 9 in that empty cell.
+3. For each number, check if it is safe (valid) to place by row, column, and 3×3 box rules.
+4. If safe, place the number and recursively attempt to fill the next empty cell.
+5. If the board is completely filled without conflicts, print the solution. 
 
 ## Program:
 ```
-Program to implement to check whether Hamiltonian path exits in the given graph.
+Program to implement to to find the solution of sudoku puzzle using Backtracking.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```python
-def isSafe(v, pos, path, adj):
-    if adj[path[pos-1]][v] == 0:
-        return False
-    if v in path:
-        return False
-    return True 
-    
-def hamPathUtil(path, pos, visited, adj, N):
-    if pos == N:
-        return True
-    for v in range(N):
-        if not visited[v] and isSafe(v, pos, path, adj):
-            path[pos] = v
-            visited[v] = True
-            if hamPathUtil(path, pos+1, visited, adj, N):
-                return True
-            path[pos] = -1
-            visited[v] = False
-    return False
+board = [
+    [0, 0, 0, 8, 0, 0, 4, 0, 3],
+    [2, 0, 0, 0, 0, 4, 8, 9, 0],
+    [0, 9, 0, 0, 0, 0, 0, 0, 2],
+    [0, 0, 0, 0, 2, 9, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 7, 0, 6, 5, 0, 0, 0, 0],
+    [9, 0, 0, 0, 0, 0, 0, 8, 0],
+    [0, 6, 2, 7, 0, 0, 0, 0, 1],
+    [4, 0, 3, 0, 0, 6, 0, 0, 0]
+]
 
-def Hamiltonian_path(adj, N):
-    ######################### Add your Code here ##########################
-    path = [-1] * N
-    visited = [False] * N
-    for start in range(N):
-        path[0] = start
-        visited[start] = True
-        if hamPathUtil(path, 1, visited, adj, N):
-            return True
-        visited[start] = False
-    return False
+def printBoard(board):
+    for i in range(0, 9):
+        for j in range(0, 9):
+            print(board[i][j], end=" ")
+        print()
+
+def isPossible(board, row, col, val):
+    for j in range(0, 9):
+        if board[row][j] == val:
+            return False
+
+    for i in range(0, 9):
+        if board[i][col] == val:
+            return False
+
+    startRow = (row // 3) * 3
+    startCol = (col // 3) * 3
+    for i in range(0, 3):
+        for j in range(0, 3):
+            if board[startRow+i][startCol+j] == val:
+                return False
+    return True
+
+def solve():
+    #####################  Add your code here #########################
+    for i in range(0, 9):
+        for j in range(0, 9):
+            if board[i][j] == 0:
+                for val in range(1, 10):
+                    if isPossible(board, i, j, val):
+                        board[i][j] = val
+                        if solve():  
+                            return True
+                        board[i][j] = 0  
+                return False
+    return True
     
-    
-    
-    
-adj = [ [ 0, 1, 1, 1, 0 ] ,
-        [ 1, 0, 1, 0, 1 ],
-        [ 1, 1, 0, 1, 1 ],
-        [ 1, 0, 1, 0, 0 ] ]
- 
-N = len(adj)
- 
-if (Hamiltonian_path(adj, N)):
-    print("YES")
-else:
-    print("NO")
+solve()
+printBoard(board)
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/190b8400-c4ed-42fd-9764-62a113cb4818)
+![image](https://github.com/user-attachments/assets/b12f5fb7-18a2-4345-9caf-c5743b51abef)
 
 
 
 ## Result:
-The Hamiltonian path program executed successfully, and it determined whether a Hamiltonian path exists in the given graph.
+The Sudoku solver program executed successfully and found the solution for the given puzzle.

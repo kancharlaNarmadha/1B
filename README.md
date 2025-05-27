@@ -1,55 +1,67 @@
-# EX 6B KNAPSACK PROBLEM
+
+# EX 6C TRAVELLING SALES MAN PROBLEM
 ## DATE:
 ## AIM:
-To demonstrate a python program using dynamic programming for 0/1 knapsack problem.
+To Solve Travelling Sales man Problem for the following graph.
+
+![image](https://github.com/user-attachments/assets/653921a4-3d7b-4691-9b41-735e80f7af0b)
 
 
 
 ## Algorithm
-1. Initialize 2D DP table `dp[n+1][W+1]`.
-2. Iterate through items and capacities.
-3. Set `dp[i][w] = 0` if item index or capacity is 0.
-4. If item weight ≤ capacity, set `dp[i][w]` to max of including or excluding the item.
-5. Otherwise, set `dp[i][w]` to value from previous item at same capacity.
-6. Return `dp[n][W]` as the maximum value achievable.
-   
+1. Define a graph with distances between V cities and select a starting city s.
+2. Generate all permutations of the other cities excluding s.
+3. For each permutation, calculate total route cost from s through the permutation and back to s.
+4. Track and update the minimum route cost found.
+5. Return the minimum cost as the shortest route covering all cities once.
+6. Note: This brute-force method is feasible only for small V due to factorial complexity. 
+
 ## Program:
 ```
-To implement the program for 0/1 knapsack problem.
-Developed by: Kancharla Narmadha
+To implement the program for TSP.
+Developed by: Kancharla narmadha
 Register Number: 212222110016
 ```
 ```py
-def knapSack(W, wt, val, n):
-    dp=[[-1]*(W+1) for _ in range(len(val)+1)]
-    for i in range(W+1):
-        dp[0][i]=0
-    for i in range(n+1):
-        dp[i][0]=0
-    for i in range(1,n+1):
-        for j in range(1,W+1):
-            if j<wt[i-1]:
-                dp[i][j]=dp[i-1][j]
-            else:
-                dp[i][j]=max(dp[i-1][j],dp[i-1][j-wt[i-1]]+val[i-1])
-    return dp[n][W]
-x=int(input())
-y=int(input())
-W=int(input())
-val=[]
-wt=[]
-for i in range(x):
-    val.append(int(input()))
-for y in range(y):
-    wt.append(int(input()))
-n = len(val)
-print('The maximum value that can be put in a knapsack of capacity W is: ',knapSack(W, wt, val, n))
+from sys import maxsize
+from itertools import permutations
+V = 4
+ 
+
+def travellingSalesmanProblem(graph, s):
+    vetex=[]
+    cur=0
+    minpath=maxsize
+    for i in range(V):
+        if i!=s:
+            vetex.append(i)
+    # k=s
+    nextper=permutations(vetex)
+    for i in nextper:
+        cur=0
+        k=s
+        for j in i:
+            cur+=graph[k][j]
+            k=j
+        cur+=graph[k][s]
+        minpath=min(minpath,cur)
+    return minpath
+        
+   
+ 
+ 
+
+if __name__ == "__main__":
+ 
+    graph = [[0, 10, 15, 20], [10, 0, 35, 25],[15, 35, 0, 30], [20, 25, 30, 0]]
+    s = 0
+    print(travellingSalesmanProblem(graph, s))
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/ac2745d0-e7f2-4c9f-a411-1b7c8f242de3)
+![image](https://github.com/user-attachments/assets/cfd30eae-dfbd-4a54-9f32-d586a2f1f7e9)
 
 
 
 ## Result:
-Thus the program was executed successfully for finding the maximum value that can be put in a knap sack of capacity .
+Thus the program was executed successfully for finding the minimum cost to vist all cities.

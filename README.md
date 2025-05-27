@@ -1,80 +1,75 @@
-
-# EX 3A Knight Tour & Count Path
+# EX 3B Hamiltonian Circuit Problem
 ## DATE:
 ## AIM:
-To write a python program to find minimum steps to reach to specific cell in minimum moves by knight
-
+To write a python program to check whether Hamiltonian path exits in the given graph.
 
 ## Algorithm
-1. Use Breadth-First Search (BFS) starting from the knight’s position.  
-2. Enqueue the starting position with distance 0 and mark it as visited.
-3. At each step, dequeue a cell and check if it is the target position.
-4. If not, move the knight in all 8 possible moves and enqueue valid, unvisited cells with dist + 1.
-5. Repeat until the target is reached, and return the number of steps (distance).
+1. Start from each vertex and mark it as visited.
+2. Try visiting all other vertices one by one using edges.
+3. Use dynamic programming to remember visited sets and paths.
+4. If you can visit all vertices exactly once, a Hamiltonian path exists.
+5. If no such path is found after checking all options, return "NO".
 
 ## Program:
 ```
-Program to implement to find minimum steps to reach to specific cell in minimum moves by knight.
+Program to implement to check whether Hamiltonian path exits in the given graph.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```python
-from collections import deque
-
-class cell:
-     
-    def __init__(self, x = 0, y = 0, dist = 0):
-        self.x = x
-        self.y = y
-        self.dist = dist
-
-def isInside(x, y, N):
-    if (x >= 1 and x <= N and
-        y >= 1 and y <= N):
+def isSafe(v, pos, path, adj):
+    if adj[path[pos-1]][v] == 0:
+        return False
+    if v in path:
+        return False
+    return True 
+    
+def hamPathUtil(path, pos, visited, adj, N):
+    if pos == N:
         return True
+    for v in range(N):
+        if not visited[v] and isSafe(v, pos, path, adj):
+            path[pos] = v
+            visited[v] = True
+            if hamPathUtil(path, pos+1, visited, adj, N):
+                return True
+            path[pos] = -1
+            visited[v] = False
     return False
-def minStepToReachTarget(knightpos,
-                         targetpos, N):
-     
-    # add your code here
-    dx = [2, 2, -2, -2, 1, 1, -1, -1]
-    dy = [1, -1, 1, -1, 2, -2, 2, -2]
+
+def Hamiltonian_path(adj, N):
+    ######################### Add your Code here ##########################
+    path = [-1] * N
+    visited = [False] * N
+    for start in range(N):
+        path[0] = start
+        visited[start] = True
+        if hamPathUtil(path, 1, visited, adj, N):
+            return True
+        visited[start] = False
+    return False
     
-    queue = deque()
-    queue.append(cell(knightpos[0], knightpos[1], 0))
     
-    visited = [[False for _ in range(N + 1)] for _ in range(N + 1)]
-    visited[knightpos[0]][knightpos[1]] = True
     
-    while queue:
-        t = queue.popleft()
-        
-        if t.x == targetpos[0] and t.y == targetpos[1]:
-            return t.dist
-        
-        for i in range(8):
-            x = t.x + dx[i]
-            y = t.y + dy[i]
-            
-            if isInside(x, y, N) and not visited[x][y]:
-                visited[x][y] = True
-                queue.append(cell(x, y, t.dist + 1))
     
-    return -1
-    
-if __name__=='__main__':
-    N = 30
-    knightpos = [1, 1]
-    targetpos = [30, 30]
-    print(minStepToReachTarget(knightpos,
-                               targetpos, N))
+adj = [ [ 0, 1, 1, 1, 0 ] ,
+        [ 1, 0, 1, 0, 1 ],
+        [ 1, 1, 0, 1, 1 ],
+        [ 1, 0, 1, 0, 0 ] ]
+ 
+N = len(adj)
+ 
+if (Hamiltonian_path(adj, N)):
+    print("YES")
+else:
+    print("NO")
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/8c25c97d-3d19-447c-9002-330e3eba2716)
+![image](https://github.com/user-attachments/assets/190b8400-c4ed-42fd-9764-62a113cb4818)
 
 
 
 ## Result:
-The program executed successfully, and the minimum number of steps for the knight to reach the target was calculated.
+The Hamiltonian path program executed successfully, and it determined whether a Hamiltonian path exists in the given graph.

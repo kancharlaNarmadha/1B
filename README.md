@@ -1,53 +1,71 @@
-
-# EX 5D Minimum Jump to Reach End Array
+# EX 6A CHERRY PICK UP PROBLEM
 ## DATE:
 ## AIM:
-To write a python program for finding the minimum number of jumps needed to reach end of the array using Dynamic Programming.
+To Create a python program for the following problem statement.
+You are given an n x n grid representing a field of cherries, each cell is one of three possible integers.
+0	means the cell is empty, so you can pass through,
+1	means the cell contains a cherry that you can pick up and pass through, or
+-1 means the cell contains a thorn that blocks your way.
+Return the maximum number of cherries you can collect by following the rules below:
+Starting at the position (0, 0) and reaching (n - 1, n - 1) by moving right or down through valid path cells (cells with value 0 or 1).
+After reaching (n - 1, n - 1), returning to (0, 0) by moving left or up through valid path cells.
+When passing through a path cell containing a cherry, you pick it up, and the cell becomes an empty cell 0. If there is no valid path between (0, 0) and (n - 1, n - 1), then no cherries can be collected.
+
 
 
 ## Algorithm
-1. If the array has 1 or fewer elements, return 0 as no jumps are needed.
-2. Create a dp array of size n and initialize all values to infinity, except dp[0] = 0 (start position).
-3. Loop over each index i from 1 to n-1 to find the minimum jumps needed to reach i.
-4. For each i, loop over all previous indices j from 0 to i-1.
-5. If index j can reach index i (i.e., j + arr[j] >= i), update dp[i] = min(dp[i], dp[j] + 1).
-6. Return dp[n-1] as the minimum number of jumps required to reach the end of the array.
+1. Initialize 3D DP `dp[row][col1][col2]` for max cherries collected by two robots.
+2. Set base case: robots start at top row, columns 0 and last.
+3. Iterate row-wise, updating DP for all robot position pairs.
+4. Calculate cherries picked, avoiding double counting.
+5. Update DP using previous row’s valid moves `(col1 ± 1, col2 ± 1)`.
+6. Return max cherries when robots reach the last row.
 
 ## Program:
 ```
-To implement the program to finding the minimum number of jumps needed to reach end of the array.
+To implement the program for Cherry pickup problem.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```py
-def minJumps(arr, n):
-    if n<=1:
-        return 0
-    dp=[float('inf')]*n
-    dp[0]=0
-    
-    for i in range(1,n):
-        for j in range(i):
-            if j+arr[j]>=i:
-                dp[i]=min(dp[i],dp[j]+1)
-                break
-    return dp[-1]
-    
-    
-    
-arr = []
-n = int(input()) #len(arr)
-for i in range(n):
-    arr.append(int(input()))
-print('Minimum number of jumps to reach','end is', minJumps(arr,n))
- 
+class Solution:
+    def cherryPickup(self, grid):
+        n = len(grid)
+        self.maxx=0
+        def cp1(row,col,arr,cc):
+            if row<0 or row>=len(arr[0]) or col<0 or col>=len(arr[0]) or arr[row][col]==-1:
+                return 
+            if row==len(arr)-1 and col==len(arr[0])-1:
+                helper(row,col,arr,cc)
+                
+            cherry=arr[row][col]
+            arr[row][col]=0
+            cp1(row,col+1,arr,cc+cherry)
+            cp1(row+1,col,arr,cc+cherry)
+            arr[row][col]=cherry
+        def helper(row,col,arr,cc):
+            if row<0 or row>=len(arr[0]) or col<0 or col>=len(arr[0]) or arr[row][col]==-1:
+                return 
+            if row==0 and col==0:
+                self.maxx=max(self.maxx,cc)
+                return 
+            cherry=arr[row][col]
+            arr[row][col]=0
+            helper(row,col-1,arr,cc+cherry)
+            helper(row-1,col,arr,cc+cherry)
+            arr[row][col]=cherry
+        cp1(0,0,grid,0)
+        return self.maxx
+        
+obj=Solution()
+grid=[[0,1,-1],[1,0,-1],[1,1,1]]        
+print(obj.cherryPickup(grid))
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/18333c5d-f33b-4703-aea7-a155e0892755)
-
+![image](https://github.com/user-attachments/assets/0dfeecd9-016d-4553-98c3-199d6c290535)
 
 
 
 ## Result:
-Thus the program was executed successfully for finding the minimum number of jumps to reach end.
+Thus the above program was executed successfully for finding the maximum number of cherries from grid.

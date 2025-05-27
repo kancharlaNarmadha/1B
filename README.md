@@ -1,55 +1,70 @@
-# EX 3D Pattern Matching
+
+# EX 4A DYNAMIC PROGRAMMING - 1
 ## DATE:
 ## AIM:
-To write a python program to implement pattern matching on the given string using Brute Force algorithm.
+To find longest common subsequence using Dynamic Programming.
 
 
 
 ## Algorithm
-1. Start checking each letter of s1 with the first letter of s
-2. If letters match, keep checking the next letters.
-3. If letters don't match, move one step forward in s1 and restart checking.
-4. If all letters of s2 match, return the starting position.
-5. If no match is found till the end, return 0.  
+1.Create a 2D table dp where dp[i][j] will store the length of the LCS of the first i characters of string X and the first j characters of string Y. 
+2.Initialize the first row and first column with 0.
+3.Traverse the strings X and Y:
+   If X[i-1] == Y[j-1], then dp[i][j] = dp[i-1][j-1] + 1 (i.e., extend the subsequence by 1).
+   Otherwise, dp[i][j] = max(dp[i-1][j], dp[i][j-1]) (i.e., take the longer subsequence without including the current character of X or Y).
+4.After filling the table, backtrack from dp[m][n] to construct the LCS string by comparing characters and moving diagonally when they match.
+5.The result is stored in the last cell of the table, dp[m][n], representing the length of the LCS.  
 
 ## Program:
 ```
-Program to implement the Pattern Matching.
+Program to implement the longest common subsequence using Dynamic Programming
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
-```python
-def BF(s1,s2):
-##############  Add your code here #############
-    i=0
-    j=0
+```py
+def lcs(X, Y):
+    m = len(X)
+    n = len(Y)
     
-    while(i<len(s1) and j<len(s2)):
-        if(s1[i]==s2[j]):
-            i+=1
-            j+=1
+    # Create a 2D array to store lengths of LCS
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    # Build the dp table in bottom-up fashion
+    for i in range(m):
+        for j in range(n):
+            if X[i] == Y[j]:
+                dp[i+1][j+1] = dp[i][j] + 1
+            else:
+                dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])
+
+    # Reconstruct LCS from the table
+    lcs_result = []
+    i, j = m, n
+    while i > 0 and j > 0:
+        if X[i-1] == Y[j-1]:
+            lcs_result.append(X[i-1])
+            i -= 1
+            j -= 1
+        elif dp[i-1][j] > dp[i][j-1]:
+            i -= 1
         else:
-            i=i-j+1
-            j=0
-            
-    if(j>=len(s2)):
-        return i-len(s2)
-    else:
-        return -1
-        
-        
-if __name__ == "__main__":
-    a1=input() 
-    a2=input() 
-    b=BF(a1,a2)
-    print(b)
+            j -= 1
+
+    # The LCS is constructed backwards
+    return ''.join(reversed(lcs_result))
+
+# Example usage
+X = input()
+Y = input()
+result = lcs(X, Y)
+print(result)
 
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/b34263ad-ed31-4ecc-845e-4f872d15794d)
+![image](https://github.com/user-attachments/assets/4a9453e1-949f-4547-9303-240894a7d0a4)
 
 
 
 ## Result:
-The brute force substring search program executed successfully and returned the starting index of the match or 0 if no match was found.
+Thus the program was executed successfully for computing the length of longest common subsequence.

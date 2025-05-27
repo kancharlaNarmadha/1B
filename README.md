@@ -1,71 +1,55 @@
-# EX 6A CHERRY PICK UP PROBLEM
+# EX 6B KNAPSACK PROBLEM
 ## DATE:
 ## AIM:
-To Create a python program for the following problem statement.
-You are given an n x n grid representing a field of cherries, each cell is one of three possible integers.
-0	means the cell is empty, so you can pass through,
-1	means the cell contains a cherry that you can pick up and pass through, or
--1 means the cell contains a thorn that blocks your way.
-Return the maximum number of cherries you can collect by following the rules below:
-Starting at the position (0, 0) and reaching (n - 1, n - 1) by moving right or down through valid path cells (cells with value 0 or 1).
-After reaching (n - 1, n - 1), returning to (0, 0) by moving left or up through valid path cells.
-When passing through a path cell containing a cherry, you pick it up, and the cell becomes an empty cell 0. If there is no valid path between (0, 0) and (n - 1, n - 1), then no cherries can be collected.
+To demonstrate a python program using dynamic programming for 0/1 knapsack problem.
 
 
 
 ## Algorithm
-1. Initialize 3D DP `dp[row][col1][col2]` for max cherries collected by two robots.
-2. Set base case: robots start at top row, columns 0 and last.
-3. Iterate row-wise, updating DP for all robot position pairs.
-4. Calculate cherries picked, avoiding double counting.
-5. Update DP using previous row’s valid moves `(col1 ± 1, col2 ± 1)`.
-6. Return max cherries when robots reach the last row.
-
+1. Initialize 2D DP table `dp[n+1][W+1]`.
+2. Iterate through items and capacities.
+3. Set `dp[i][w] = 0` if item index or capacity is 0.
+4. If item weight ≤ capacity, set `dp[i][w]` to max of including or excluding the item.
+5. Otherwise, set `dp[i][w]` to value from previous item at same capacity.
+6. Return `dp[n][W]` as the maximum value achievable.
+   
 ## Program:
 ```
-To implement the program for Cherry pickup problem.
+To implement the program for 0/1 knapsack problem.
 Developed by: Kancharla Narmadha
 Register Number: 212222110016
 ```
 ```py
-class Solution:
-    def cherryPickup(self, grid):
-        n = len(grid)
-        self.maxx=0
-        def cp1(row,col,arr,cc):
-            if row<0 or row>=len(arr[0]) or col<0 or col>=len(arr[0]) or arr[row][col]==-1:
-                return 
-            if row==len(arr)-1 and col==len(arr[0])-1:
-                helper(row,col,arr,cc)
-                
-            cherry=arr[row][col]
-            arr[row][col]=0
-            cp1(row,col+1,arr,cc+cherry)
-            cp1(row+1,col,arr,cc+cherry)
-            arr[row][col]=cherry
-        def helper(row,col,arr,cc):
-            if row<0 or row>=len(arr[0]) or col<0 or col>=len(arr[0]) or arr[row][col]==-1:
-                return 
-            if row==0 and col==0:
-                self.maxx=max(self.maxx,cc)
-                return 
-            cherry=arr[row][col]
-            arr[row][col]=0
-            helper(row,col-1,arr,cc+cherry)
-            helper(row-1,col,arr,cc+cherry)
-            arr[row][col]=cherry
-        cp1(0,0,grid,0)
-        return self.maxx
-        
-obj=Solution()
-grid=[[0,1,-1],[1,0,-1],[1,1,1]]        
-print(obj.cherryPickup(grid))
+def knapSack(W, wt, val, n):
+    dp=[[-1]*(W+1) for _ in range(len(val)+1)]
+    for i in range(W+1):
+        dp[0][i]=0
+    for i in range(n+1):
+        dp[i][0]=0
+    for i in range(1,n+1):
+        for j in range(1,W+1):
+            if j<wt[i-1]:
+                dp[i][j]=dp[i-1][j]
+            else:
+                dp[i][j]=max(dp[i-1][j],dp[i-1][j-wt[i-1]]+val[i-1])
+    return dp[n][W]
+x=int(input())
+y=int(input())
+W=int(input())
+val=[]
+wt=[]
+for i in range(x):
+    val.append(int(input()))
+for y in range(y):
+    wt.append(int(input()))
+n = len(val)
+print('The maximum value that can be put in a knapsack of capacity W is: ',knapSack(W, wt, val, n))
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/0dfeecd9-016d-4553-98c3-199d6c290535)
+![image](https://github.com/user-attachments/assets/ac2745d0-e7f2-4c9f-a411-1b7c8f242de3)
 
 
 
 ## Result:
-Thus the above program was executed successfully for finding the maximum number of cherries from grid.
+Thus the program was executed successfully for finding the maximum value that can be put in a knap sack of capacity .
